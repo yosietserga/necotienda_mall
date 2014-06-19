@@ -1,0 +1,55 @@
+<?php
+// Heading
+$_['heading_title']         = 'Menu';
+
+// Text
+$_['text_admin']            = 'Admin';
+$_['text_backup']           = 'Respaldar/Restaurar';
+$_['text_catalog']          = 'Cat&aacute;logo';
+$_['text_category']         = 'Categor&iacute;as';
+$_['text_configuration']    = 'Configuraci&oacute;n';
+$_['text_country']          = 'Pa&iacute;s'; 
+$_['text_coupon']           = 'Cup&oacute;n';
+$_['text_currency']         = 'Moneda';
+$_['text_customer']         = 'Clientes';
+$_['text_customer_group']    = 'Grupo de Clientes';
+$_['text_customers']        = 'Clientes';
+$_['text_download']         = 'Descargas';
+$_['text_error_log']         = 'Log de Errores';
+$_['text_extension']        = 'Extensiones';
+$_['text_feed']             = 'Feeds de Productos';
+$_['text_geo_zone']         = 'Geo Zonas';
+$_['text_home']             = 'Inicio';
+$_['text_help']             = 'Ayuda';
+$_['text_information']      = 'Informaci&oacute;n';
+$_['text_language']         = 'Idioma';
+$_['text_localisation']     = 'Localizaci&oacute;n';
+$_['text_logout']           = 'Salir';
+$_['text_contact']          = 'Correo';
+$_['text_manufacturer']     = 'Fabricante';
+$_['text_module']           = 'Modulos';
+$_['text_order']            = 'Pedido';
+$_['text_order_status']     = 'Estado del Pedido';
+$_['text_payment']          = 'Pago';
+$_['text_product']          = 'Producto';
+$_['text_reports']          = 'Informes';
+$_['text_report_sale']      = 'Ventas';
+$_['text_report_viewed']    = 'Productos Vistos';
+$_['text_report_purchased'] = 'Prod. Adquiridos';
+$_['text_review']           = 'Comentarios';
+$_['text_shipping']         = 'Env&iacute;os';
+$_['text_shop']             = 'Ir a la tienda';
+$_['text_setting']          = 'Configuraci&oacute;n';
+$_['text_stock_status']     = 'Estado del Stock';
+$_['text_support']          = 'Foro de Soporte';
+$_['text_tax_class']        = 'Tipo de Impuesto';
+$_['text_total']            = 'Total de Pedidos';
+$_['text_user']             = 'Usuario';
+$_['text_user_guide']       = 'Gu&iacute;a de usuario';
+$_['text_documentation']    = 'Documentaci&oacute;n';
+$_['text_users']            = 'Usuarios';
+$_['text_user_group']       = 'Grupos de Usuarios';
+$_['text_weight_class']     = 'Tipo de Unidad de Pesaje';
+$_['text_measurement_class'] = 'Clase de Medida';
+$_['text_opencart']         = 'P&aacute;gina de inicio';
+$_['text_zone']             = 'Zona';

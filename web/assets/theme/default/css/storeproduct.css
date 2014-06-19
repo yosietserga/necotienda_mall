@@ -1,0 +1,597 @@
+/* Etalage container (large thumb + small thumbs): */
+ul#productImages{
+	margin-bottom: 50px;
+}
+
+/* Large thumbnail: */
+#productImages li.etalage_thumb{
+	background: white url(../images/loader.gif) center no-repeat;
+	border: 1px solid #ddd;
+	padding: 6px;
+	-webkit-box-shadow: 0 0 10px #ddd;
+	-moz-box-shadow: 0 0 10px #ddd;
+	box-shadow: 0 0 10px #ddd;
+}
+/* Large thumbnail - image (in case you want to add a border around the image within the frame) */
+#productImages img.etalage_thumb_image{ }
+
+/* Small thumbnails: */
+#productImages li.etalage_small_thumbs li{
+	background: white;
+	border: 1px solid #ddd;
+	margin: 10px; /* The space between and above the small thumbs */
+	padding: 3px;
+}
+/* The one on the left that makes them slide */
+#productImages ul li.etalage_smallthumb_first{ }
+/* The one on the right that makes them slide */
+#productImages ul li.etalage_smallthumb_last{ }
+/* The currently active one */
+#productImages ul li.etalage_smallthumb_active{
+	-webkit-box-shadow: 0 0 10px #ddd;
+	-moz-box-shadow: 0 0 10px #ddd;
+	box-shadow: 0 0 10px #ddd;
+}
+
+/* Zoomed image area: */
+#productImages li.etalage_zoom_area{
+	background: white url(../images/loader.gif) center no-repeat;
+	border: 1px solid #ddd;
+	margin: 10px; /* The space between the large thumbnail and the zoomed area */
+	padding: 6px;
+	-webkit-box-shadow: 0 0 10px #ddd;
+	-moz-box-shadow: 0 0 10px #ddd;
+	box-shadow: 0 0 10px #ddd;
+}
+
+/* Magnifier area (thumbnail hovering): */
+#productImages li.etalage_magnifier{
+	background: white;
+	border: 1px solid #bbb;
+}
+
+/* Optional icon that will apear at the left bottom of the large thumbnail: */
+#productImages li.etalage_icon{
+	background: url(../images/zoom.gif) no-repeat;
+	margin: 20px;
+	width: 14px;
+	height: 14px;
+}
+
+/* Optional hint that will apear at the top right of the large thumbnail: */
+#productImages li.etalage_hint{
+	background: url(../images/hint.gif) no-repeat;
+	margin: 15px; /* The offset to the right-top corner */
+	width: 130px;
+	height: 57px;
+}
+
+/* ------------------------------------ FUNCTIONALITY -------------------------------------- */
+/* The following CSS serves to make Etalage function properly. Don't edit or edit carefully. */
+/* ----------------------------------------------------------------------------------------- */
+
+#productImages, .etalage, .etalage_thumb, .etalage_thumb_image, .etalage_source_image, .etalage_zoom_preview, .etalage_icon, .etalage_hint{ display:none }
+.etalage, .etalage ul, .etalage li, .etalage img, .etalage_hint{ margin:0; padding:0; border:0; list-style:none }
+.etalage, .etalage_magnifier div, .etalage_magnifier div img, .etalage_small_thumbs ul, ul .etalage_small_thumbs li, .etalage_zoom_area div, .etalage_zoom_img{ position:relative }
+.etalage img, .etalage li{ -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -o-user-select:none; user-select:none; -webkit-user-drag:none; -moz-user-drag:none; user-drag:none }
+.etalage{ float:left }
+.etalage li{ position:absolute }
+.etalage img{ vertical-align:bottom }
+.etalage_magnifier{ cursor:default }
+.etalage_magnifier div{ overflow:hidden }
+.etalage_magnifier div img{ display:none }
+.etalage_icon, .etalage_hint{ cursor:default; width:0; height:0; overflow:hidden }
+.etalage_small_thumbs{ overflow:hidden }
+ul .etalage_small_thumbs li{ float:left }
+.etalage_zoom_area div{ overflow:hidden; z-index:997 }
+ul .etalage_zoom_preview{ position:absolute; z-index:998 }
+.etalage_zoom_img{ z-index:999 }
+/* miniZoomPan styles */
+.gzoomwrap {
+  float:left;
+  margin:0 10px 0 0;
+}
+.minizoompan {
+  background: #fff;
+  position: relative; /* always set to relative or offset() won't work */
+  border: 1px solid lightgray;
+  padding: 0;
+  margin: 0;
+}
+
+.minizoompan span.loader { /* the loader label*/
+  position:absolute;
+  left:0;
+  top:0;
+  z-index: 1;
+  display: none;
+  color: #000;
+  background: #fff;
+  font: normal 9px Arial, Verdana;
+  padding: 3px;
+}
+.minizoompan .zoomIcon { /* the zoom icon */
+  position:absolute;
+  cursor:pointer;
+  left:0;
+  top:0;
+  z-index: 1;
+  display: none;
+}
+
+.gzoombutton {
+    padding:0px 5px;
+    background:#1B7902;
+    border-radius:2px;
+    font:bold 12px arial;
+    color:#fff;
+    text-align:center;
+    float:left;
+    cursor:pointer;
+}
+.gzoomSlider {
+  float:left;
+  margin:3px 3px 0 7px;
+}
+
+#gzoomoverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	width: 100%;
+	height: 500px;
+}
+#gzoomlbox {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	text-align: center;
+	line-height: 0;
+}
+#gzoomlbox a img { 
+  border: none; 
+}
+#imagebox {
+	position: relative;
+	background-color: #fff;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+}
+#gzoom-cont-img { padding: 10px; }
+
+#lboximgdatacontainer {
+	font: 10px Verdana, Helvetica, sans-serif;
+	background-color: #fff;
+	margin: 0 auto;
+	line-height: 1.4em;
+	overflow: auto;
+	width: 100%;
+	padding: 0 10px 0;
+	padding: 0 10px 10px 10px; 
+	color:#666;
+}
+#gzoomloading {
+	position: absolute;
+	top: 40%;
+	left: 0%;
+	height: 25%;
+	width: 100%;
+	text-align: center;
+	line-height: 0;
+}
+
+#lboximgdatacontainer #gzoomlbox-image-details { 
+	width: 70%; 
+	float: left; 
+	text-align: left; 
+}	
+#gzoom-image-caption { font-weight: bold; }
+.ui-slider-handle {
+    background:#1B7902 !important;
+    border:none !important;
+}
+/************** CARRUSEL ********************/
+#images, #images div {
+	text-align: left; 
+}
+.jcarousel-skin-tango .jcarousel-container {
+    margin-top:15px;
+}
+.jcarousel-skin-tango .jcarousel-direction-rtl {
+	direction: rtl;
+}
+.jcarousel-skin-tango .jcarousel-container-horizontal {
+	text-align: center;
+	width: 200px;
+    padding: 10px;
+}
+.jcarousel-skin-tango .jcarousel-clip {
+    overflow: hidden;
+}
+.jcarousel-skin-tango .jcarousel-clip-horizontal {
+	width: 190px;
+    height: 90px;
+}
+.jcarousel-skin-tango .jcarousel-item {
+    width: 55px;
+    height: 95px;
+	padding:2px;
+}
+.jcarousel-skin-tango .jcarousel-item img {
+    border:solid 1px #000;
+}	
+.jcarousel-skin-tango .jcarousel-item-horizontal {
+	margin-left: 0;
+    margin-right: 4px;
+}
+.jcarousel-skin-tango .jcarousel-direction-rtl .jcarousel-item-horizontal {
+	margin-left: 4px;
+    margin-right: 0;
+}
+.jcarousel-skin-tango .jcarousel-item-placeholder {
+    color: #000;
+}
+/* jcarousel Horizontal Buttons */
+.jcarousel-next-horizontal, .jcarousel-prev-horizontal {
+    position: absolute;
+    top: auto;
+    margin-top:-75px;
+    width: 32px;
+    height: 42px;
+    cursor: pointer;
+}
+.jcarousel-skin-tango .jcarousel-next-horizontal {
+    right: -25px;
+    background: transparent url(../images/next-horizontal.png) no-repeat 0 0;
+}
+.jcarousel-skin-tango .jcarousel-direction-rtl .jcarousel-next-horizontal {
+    left: 5px;
+    right: auto;
+    background-image: url(../images/prev-horizontal.png);
+}
+.jcarousel-skin-tango .jcarousel-next-horizontal:hover,
+.jcarousel-skin-tango .jcarousel-next-horizontal:focus {
+    background-position: 1px top;
+}
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal,
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal:hover,
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal:focus,
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal:active {
+    cursor: default;
+    background-position: -96px 0;
+}
+.jcarousel-skin-tango .jcarousel-prev-horizontal {
+    left: -25px;
+    background: transparent url(../images/prev-horizontal.png) no-repeat 0 0;
+}
+.jcarousel-skin-tango .jcarousel-direction-rtl .jcarousel-prev-horizontal {
+    left: auto;
+    right: 5px;
+    background-image: url(../images/next-horizontal.png);
+}
+.jcarousel-skin-tango .jcarousel-prev-horizontal:hover, 
+.jcarousel-skin-tango .jcarousel-prev-horizontal:focus {
+    background-position: -1px top;
+}
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal,
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal:hover,
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal:focus,
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal:active {
+    cursor: default;
+    background-position: -96px 0;
+}
+#productTabs {
+    margin-top:0px;
+    margin-bottom:50px;
+}
+.tabs {
+    padding: 2px;
+    list-style:none;
+}
+.tab {
+    margin:0px;
+    padding:10px 30px;
+    background: #fefefe; /* Old browsers */
+    background: -moz-linear-gradient(top, #fefefe 0%, #dddddd 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fefefe 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fefefe 0%,#dddddd 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fefefe 0%,#dddddd 100%); /* IE10+ */
+    background: linear-gradient(top, #fefefe 0%,#dddddd 100%); /* W3C */
+    min-width:60px;
+    width:auto;
+    float:left;
+    border:solid 1px #ddd;
+    border-radius: 4px 4px 0px 0px;
+    text-align:center;
+    font:bold 14px Arial;
+    color:#333;
+    cursor:pointer;
+}
+.tab:hover, .tabs .active {
+    background: #333; /* Old browsers */
+    border-color:#222;
+    color:#fff;
+}
+/* Nombre del producto */
+#productName {
+    color: #555;
+    font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+}
+/* Modelo del producto */
+#productModel {
+    color: #000;
+    font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
+    font-size: 14px;
+    font-weight:bold;
+}
+/* Precio del producto */
+#productPrice {
+    color:#900;
+    font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+/* Etiquetas del producto */
+.tags {
+    margin:0px;
+	padding:0px;
+	right:24px;
+	bottom:-12px;
+	list-style:none;
+}
+.tags li, .tags a {
+	position:relative;
+    margin-top:5px;
+    float:left;
+	height:24px;
+	line-height:24px;
+	font-size:10px;
+}
+.tags a {
+    margin-left:20px;
+	padding:0 10px 0 12px;
+	background:#0089e0;
+	color:#fff;
+	text-decoration:none;
+	-moz-border-radius-bottomright:4px;
+	-webkit-border-bottom-right-radius:4px;	
+	border-bottom-right-radius:4px;
+	-moz-border-radius-topright:4px;
+	-webkit-border-top-right-radius:4px;	
+	border-top-right-radius:4px;
+}
+.tags a:before {
+    content:"";
+	float:left;
+	position:absolute;
+	top:0;
+	left:-12px;
+	width:0;
+	height:0;
+	border-color:transparent #0089e0 transparent transparent;
+	border-style:solid;
+	border-width:12px 12px 12px 0;
+}
+.tags a:after {
+    content:"";
+	position:absolute;
+	top:10px;
+	left:0;
+	float:left;
+	width:4px;
+	height:4px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	background:#fff;
+	-moz-box-shadow:-1px -1px 2px #004977;
+	-webkit-box-shadow:-1px -1px 2px #004977;
+	box-shadow:-1px -1px 2px #004977;
+}
+.tags .manufacturer {background:#86B13C;}
+.tags .manufacturer:before {border-color:transparent #86B13C transparent transparent;}
+.tags .category {background:#F5692C;}
+.tags .category:before {border-color:transparent #F5692C transparent transparent;}
+.tags a:hover{background:#555;}	
+.tags a:hover:before{border-color:transparent #555 transparent transparent;}
+/* special */
+#productOldPrice {
+    font:normal 14px Verdana;
+    color:#900;
+    text-decoration:line-through;
+}
+#productNewPrice {
+    font:bold 24px Verdana;
+    color:#000;
+}
+/* discounts */
+#productDiscount table {
+    width:100%;
+}
+#productDiscount th {
+    background:#ccc;
+}
+#productDiscount td {
+    text-align:center;
+}
+.oferta, .descuento, .nuevo {
+	position:absolute;
+	top:auto;
+	right:-1px;
+	margin-top:-140px;
+	width:50px;
+	height:50px;
+	display:block;
+	z-index:99;
+}
+.nuevo {
+	background:url(../../../images/data/product_new.png) transparent left top no-repeat;
+}
+.oferta {
+	background:url(../../../images/data/product_special.png) transparent left top no-repeat;
+}
+.descuento {
+	background:url(../../../images/data/product_discount.png) transparent left top no-repeat;
+}
+/* options */
+#productOptions ul {
+    list-style:none;
+}
+#productOptions li {
+    margin:5px auto;
+    padding: 5px;
+}
+#productOptions .label {
+    width:140px;
+}
+/* quantity form */
+#productQty b {
+    margin-right:20px;
+    float:left;
+}
+#quantity {
+    background:#fff;
+    border:solid 1px #ccc;
+    width:50px;
+    height:24px;
+    box-shadow: inset 1px 1px 3px #999;
+}
+.arrow-up {
+    left:90px;
+    border-bottom: 12px solid #666; 
+}
+.arrow-down {
+    top:14px;
+    left:110px;
+    border-top: 12px solid #666;
+}
+.arrow-up, .arrow-down {
+    width: 0px; 
+    height: 0px; 
+    border-left: 6px solid transparent; 
+    border-right: 6px solid transparent;
+}
+.arrow-up:hover {border-bottom-color:#A71114}
+.arrow-down:hover {border-top-color:#A71114}
+.arrow-left {
+    border-right: 100px solid orange;
+}
+.arrow-right {
+    border-left: 100px solid red;
+}
+.arrow-left, .arrow-right {
+    width: 0px;
+    height: 0px;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+}
+.product_description {
+    margin:5px 10px;
+}
+.product_description ul {
+    margin:0px;
+    margin-left:20px;
+    padding:0px;
+}
+/* commnet form */
+#_comments textarea {
+    padding:10px;
+    width:90%;
+    height:40px;
+}
+small {
+    font:normal 9px Verdana;
+}
+/* seller info */
+#sellerInfo {
+    margin:5px auto;
+    padding:5px;
+    background:#f0f0f0;
+    border:solid 1px #e0e0e0;
+    width:100%;
+    display:block;
+    float:left;
+}
+#sellerInfo h3 {
+    margin:0px;
+    margin-bottom:5px;
+    padding:0px;
+    font-size:14px;
+}
+#sellerInfo img {
+    margin: 2px 5px;
+    border:solid 1px #ccc;
+    float:left;
+}
+#sellerInfo > div {
+    float:left;
+}
+/* /seller info */
+/* product lightbox */
+#overlayTemp div.background {
+    position:fixed;
+    top:0px;
+    left:0px;
+    margin:0px;
+    padding:0px;
+    background:rgba(0,0,0,0.4);
+    width:100%;
+    height:100%;
+    z-index:9997;
+}
+#overlayTemp span.content {
+    position:fixed;
+    top:40px;
+    left:auto;
+    margin:0px auto;
+    padding:10px;
+    background:#fff;
+    width:700px;
+    height:400px;
+    z-index:9998;
+    -ms-border-radius:8px;
+    -o-border-radius:8px;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+    -ms-box-shadow:0px 0px 10px #000;
+    -o-box-shadow:0px 0px 10px #000;
+    -moz-box-shadow:0px 0px 10px #000;
+    -webkit-box-shadow:0px 0px 10px #000;
+    box-shadow:0px 0px 10px #000;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+#overlayTemp a.close {
+    position:fixed;
+    top:40px;
+    left:0px;
+    margin:0px auto;
+    padding:5px 10px 10px 10px;
+    background:#333;
+    width:5px;
+    height:10px;
+    border:solid 3px #fff;
+    font:bold 12px Arial, sans-serif;
+    text-decoration:none;
+    color:#fff;
+    z-index:9999;
+    -ms-border-radius:20px;
+    -o-border-radius:20px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    border-radius:20px;
+    -ms-box-shadow:0px 0px 4px #000;
+    -o-box-shadow:0px 0px 4px #000;
+    -moz-box-shadow:0px 0px 4px #000;
+    -webkit-box-shadow:0px 0px 4px #000;
+    box-shadow:0px 0px 4px #000;
+}
+/* /product lightbox */

@@ -1,0 +1,33 @@
+.searchWidget .content {
+    margin:0px;
+    padding:6px 1% 2px 1%;
+    background:#2781D5;
+    width:98%;
+    float:left;
+}
+.searchWidget input {
+    margin:0px 5px;
+    height:21px;
+    float:left;
+}
+.searchWidget select {
+    margin:0px 5px;
+    height:27px;
+    float:left;
+}
+.searchWidget a {
+    margin-top:0px;
+    background:#333;
+}
+/* aside */
+.aside .searchWidget .content {
+    background: none;
+}
+.aside .searchWidget input, .aside .searchWidget select {
+    margin:4px 0px;
+    width:90%;
+    height:20px;
+}
+.aside .searchWidget a {
+    margin-top:5px;
+}

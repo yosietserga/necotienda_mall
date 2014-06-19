@@ -1,0 +1,197 @@
+
+/* Etalage container (large thumb + small thumbs): */
+ul#productImages{
+	margin-bottom: 50px;
+}
+
+/* Large thumbnail: */
+#productImages li.etalage_thumb{
+	background: white url(../images/loading.gif) center no-repeat;
+	border: 1px solid #ddd;
+	padding: 6px;
+	-webkit-box-shadow: 0 0 10px #ddd;
+	-moz-box-shadow: 0 0 10px #ddd;
+	box-shadow: 0 0 10px #ddd;
+}
+/* Large thumbnail - image (in case you want to add a border around the image within the frame) */
+#productImages img.etalage_thumb_image{ }
+
+/* Small thumbnails: */
+#productImages li.etalage_small_thumbs li{
+	background: white;
+	border: 1px solid #ddd;
+	margin: 10px; /* The space between and above the small thumbs */
+	padding: 3px;
+}
+/* The one on the left that makes them slide */
+#productImages ul li.etalage_smallthumb_first{ }
+/* The one on the right that makes them slide */
+#productImages ul li.etalage_smallthumb_last{ }
+/* The currently active one */
+#productImages ul li.etalage_smallthumb_active{
+	-webkit-box-shadow: 0 0 10px #ddd;
+	-moz-box-shadow: 0 0 10px #ddd;
+	box-shadow: 0 0 10px #ddd;
+}
+
+/* Zoomed image area: */
+#productImages li.etalage_zoom_area{
+	background: white url(../images/loading.gif) center no-repeat;
+	border: 1px solid #ddd;
+	margin: 10px; /* The space between the large thumbnail and the zoomed area */
+	padding: 6px;
+	-webkit-box-shadow: 0 0 10px #ddd;
+	-moz-box-shadow: 0 0 10px #ddd;
+	box-shadow: 0 0 10px #ddd;
+}
+
+/* Magnifier area (thumbnail hovering): */
+#productImages li.etalage_magnifier{
+	background: white;
+	border: 1px solid #bbb;
+}
+
+/* Optional icon that will apear at the left bottom of the large thumbnail: */
+#productImages li.etalage_icon{
+	background: url(../images/zoom.gif) no-repeat;
+	margin: 20px;
+	width: 14px;
+	height: 14px;
+}
+
+/* Optional hint that will apear at the top right of the large thumbnail: */
+#productImages li.etalage_hint{
+	background: url(../images/hint.gif) no-repeat;
+	margin: 15px; /* The offset to the right-top corner */
+	width: 130px;
+	height: 57px;
+}
+
+/* ------------------------------------ FUNCTIONALITY -------------------------------------- */
+/* The following CSS serves to make Etalage function properly. Don't edit or edit carefully. */
+/* ----------------------------------------------------------------------------------------- */
+
+#productImages, .etalage, .etalage_thumb, .etalage_thumb_image, .etalage_source_image, .etalage_zoom_preview, .etalage_icon, .etalage_hint{ display:none }
+.etalage, .etalage ul, .etalage li, .etalage img, .etalage_hint{ margin:0; padding:0; border:0; list-style:none }
+.etalage, .etalage_magnifier div, .etalage_magnifier div img, .etalage_small_thumbs ul, ul .etalage_small_thumbs li, .etalage_zoom_area div, .etalage_zoom_img{ position:relative }
+.etalage img, .etalage li{ -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -o-user-select:none; user-select:none; -webkit-user-drag:none; -moz-user-drag:none; user-drag:none }
+.etalage{ float:left }
+.etalage li{ position:absolute }
+.etalage img{ vertical-align:bottom }
+.etalage_magnifier{ cursor:default }
+.etalage_magnifier div{ overflow:hidden }
+.etalage_magnifier div img{ display:none }
+.etalage_icon, .etalage_hint{ cursor:default; width:0; height:0; overflow:hidden }
+.etalage_small_thumbs{ overflow:hidden }
+ul .etalage_small_thumbs li{ float:left }
+.etalage_zoom_area div{ overflow:hidden; z-index:997 }
+ul .etalage_zoom_preview{ position:absolute; z-index:998 }
+.etalage_zoom_img{ z-index:999 }
+.tabs {
+    padding: 2px;
+    list-style:none;
+}
+.tab {
+    margin:0px;
+    padding:10px 0px;
+    background: #fefefe; /* Old browsers */
+    background: -moz-linear-gradient(top, #fefefe 0%, #dddddd 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fefefe 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fefefe 0%,#dddddd 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fefefe 0%,#dddddd 100%); /* IE10+ */
+    background: linear-gradient(top, #fefefe 0%,#dddddd 100%); /* W3C */
+    width:24%;
+    float:left;
+    border:solid 1px #ddd;
+    border-radius: 4px 4px 0px 0px;
+    text-align:center;
+    font:bold 14px Arial;
+    color:#333;
+    cursor:pointer;
+}
+.tab:hover, .tabs .active {
+    background: #006BBA; /* Old browsers */
+    border-color:transparent;
+    color:#fff;
+}
+.product_description {
+    overflow:hidden;
+}
+.property b, .property p {font-size:14px;color:#222 !important}
+.overview b {
+    font-size:12px;
+    color:#222;
+}
+.options ul {
+    margin:0px;
+    padding:0px;
+    list-style:none
+}
+.options .label {
+    padding-top:5px;
+    color:#888888;
+    font-size: 11px;
+    min-width:40px;
+    width:auto;
+}
+.options select {
+    color:#706C56;
+    font-size: 11px;
+    border:solid 1px #D9D9D9;
+}
+.model {color: #109FEC;}
+.price {
+    color:#FF9818;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    font-weight:bold;
+}
+/** offers tab **/
+.offer_item {
+    margin:0px;
+    padding:10px 0px;
+    list-style:none;
+    border-bottom:solid 1px #ccc;
+}
+.offer_item p {
+    margin:0px;
+    line-height: 16px;
+}
+.offer-company {
+    margin-top:10px;
+    color:#000;
+    font:bold 20px Arial;
+}
+.offer-price {
+    margin-top:10px;
+    margin-right: 20px;
+    padding-top: 7px;
+    padding-left:20px;
+    padding-right:20px;
+    background:#4BC5EC;
+    color:#fff;
+    font:bold 24px Arial;
+    width:50px;
+    height:40px;
+    border-radius:30px;
+    box-shadow: 2px 2px 0px 1px #006BBA;
+}
+.offer-buttons {
+    float:right;
+}
+.offer-buttons a {
+    margin:5px;
+    padding-left:40px;
+    clear:both;
+    float:none;
+    display:inline-block;
+    border:solid 1px #ccc;
+    color:#333;
+    font-weight:bold;
+}
+.offer-buttons a:hover {
+    background:#900 !important;
+    color:#fff;
+}
+/** offers tab **/

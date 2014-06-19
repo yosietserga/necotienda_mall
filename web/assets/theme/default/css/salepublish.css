@@ -1,0 +1,203 @@
+
+/*-----------------------
+    Sale Publish
+------------------------*/
+.createItem {
+    padding:10px;
+    background:#f0f0f0;
+    width:96%;
+    border-radius:4px;
+    box-shadow: inset 0px 0px 3px #ccc;
+}
+.createItemWrapper {
+    padding:5px;
+    background:#fff;
+    width:99%;
+    min-height:180px;
+    height:auto;
+    display:block;
+    border-radius:4px;
+    box-shadow: 0px 0px 2px #ccc;
+}
+.createItemWrapper input[type=text] {
+    width:250px;
+    height:30px;
+}
+.createItemWrapper #categoriesWrapper select {
+    float:none;
+}
+.createItemWrapper .ui-combobox-input {
+    background:#fff !important;
+    width:250px !important;
+    height:30px !important;
+    font-size:22px !important;
+    box-shadow: inset 1px 1px 3px #ccc;
+    float:left;
+}
+.createItemWrapper .ui-button {
+    margin-top:5px !important;
+    background:#333 !important;
+    height:36px !important;
+    float:left;
+}
+.createItemWrapper .ui-menu {
+    height:250px !important;
+}
+.plan_selected {
+    margin:0px;
+    padding:10px 5px;
+    background:#e0e0e0;
+    border: solid 1px #ccc;
+    width:300px;
+}
+.plan_selected:after {
+    content:"";
+    margin-top:-10px;
+    margin-right:-5px;
+    padding:10px 5px;
+    background:#bbb;
+    width:20px;
+    height:15px;
+    display:block;
+    float:right;
+    cursor:pointer;
+}
+ul.plans {
+    position:absolute;
+    top:auto;
+    left:auto;
+    margin-top: 0px;
+    margin-left: -30px;
+    list-style:none;
+    display:none;
+    cursor:pointer;
+}
+div.plansWrapper:hover ul {
+    display:block;
+}
+div.plansWrapper li {
+    padding: 5px;
+    width:300px;
+    height:50px;
+    border:dashed 1px #ccc;
+    border-top:none;
+    cursor:pointer;
+    overflow:hidden;
+}
+div.plansWrapper li:nth-child(1) {
+    border-top:dashed 1px #ccc;
+}
+div.plansWrapper li:nth-child(even) {
+    background:#f0f0f0;
+}
+div.plansWrapper li:nth-child(odd) {
+    background:#e0e0e0;
+}
+div.plansWrapper li:hover {
+    background:#fff;
+}
+div.plansWrapper ul img, div.plansWrapper ul div {
+    margin-right:5px;
+    float:left;
+}
+div.plansWrapper ul b {
+    clear:both;
+    float:none;
+    display:block;
+}
+div.plansWrapper ul span {
+    margin:5px 2px;
+    font-size:9px;
+}
+#itemsWrapper {
+    margin-top: 20px;
+    padding:10px;
+    background:#f0f0f0;
+    width:96%;
+    border-radius:4px;
+    box-shadow: inset 0px 0px 3px #ccc;
+}
+#itemsWrapper #formSale {
+    padding:0px;
+    background:#fff;
+    width:100%;
+    min-height:180px;
+    height:auto;
+    display:block;
+    border-radius:4px;
+    box-shadow: 0px 0px 2px #ccc;
+}
+#formSale .product {
+    padding: 5px 0px;
+    width:100%;
+    height:180px;
+    height:auto;
+    display:block;
+    border-bottom:dashed 1px #ccc;
+}
+#product_images li, div.imageWrapper {
+    position: relative;
+    margin: 10px 5px;
+    background:url(../images/no_image.jpg) #fff left top no-repeat;
+    overflow: hidden;
+    width:100px !important;
+    height:100px !important;
+    border:dashed 1px #666 !important;
+    list-style:none;
+    float:left;
+    cursor:pointer;
+}
+input.image {
+    position: absolute;
+    top:0px;
+    right: 0px;
+    margin: 0px;
+    padding:50px 0px !important;
+    opacity:0;
+    cursor:pointer;
+}
+/* items */
+.product {
+    padding:2%;
+    float:left;
+    width:96%;
+    min-height:100px;
+    height:auto;
+    display:block;
+}
+.product img {
+    margin-right:10px;
+    float:left;
+}
+.itemClose {
+    float:right !important;
+}
+.itemName {
+    font-size:18px !important;
+}
+.itemModel {
+    color:#999;
+}
+.itemPlan {
+    margin:3px 5px;
+    padding:4px 6px;
+    background:#a5c956;
+    color:#fff;
+    border-radius:4px;
+    box-shadow: 0px 0px 4px #999;
+    float:left;
+}
+.itemCategories span {
+    margin:3px 5px;
+    padding:4px 6px;
+    background:#f60;
+    color:#fff;
+    border-radius:4px;
+    box-shadow: 0px 0px 4px #999;
+    float:left;
+}
+.itemImages,.itemAttributes ,.itemDescription {
+    clear:both;
+    display:block;
+}
+/* /items */

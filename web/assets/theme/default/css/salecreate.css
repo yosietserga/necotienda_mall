@@ -1,0 +1,130 @@
+/*-----------------------
+    Sale Create
+------------------------*/
+#categoriesWrapper select {
+    margin:0px 5px;
+    font-size:16px;
+    width:250px;
+    height:300px;
+    float:left;
+}
+.ui-combobox-input {
+    background:#fff !important;
+    width:600px !important;
+    height:40px !important;
+    font-size:32px !important;
+    box-shadow: inset 1px 1px 3px #ccc;
+    float:left;
+}
+.ui-button {
+    margin-top:5px !important;
+    background:#333 !important;
+    height:46px !important;
+    float:left;
+}
+.ui-menu {
+    height:300px !important;
+    overflow:auto !important;
+}
+#product_images li, div.imageWrapper {
+    position: relative;
+    margin: 10px 5px;
+    background:url(../images/no_image.jpg) #fff left top no-repeat;
+    overflow: hidden;
+    width:100px !important;
+    height:100px !important;
+    border:dashed 1px #666 !important;
+    list-style:none;
+    float:left;
+    cursor:pointer;
+}
+input.image {
+    position: absolute;
+    top:0px;
+    right: 0px;
+    margin: 0px;
+    padding:50px 0px !important;
+    opacity:0;
+    cursor:pointer;
+}
+.plan {
+    position:relative;
+    margin:0px;
+    padding:0px;
+    float:left;
+    z-index:1;
+    text-align:center;
+}
+.plan a {
+    width:80%;
+}
+.plan li {
+    margin: 0px;
+    padding:5px 2px;
+    line-height:30px;
+    list-style:none;
+}
+.plan li:nth-child(even) {
+    background:#f0f0f0;
+}
+.plan li:nth-child(odd) {
+    background:#e0e0e0;
+}
+.plan_hover {
+    top:auto;
+    left:auto;
+    margin-top:-20px;
+    margin-left:-30px;
+    padding:20px 10px;
+    background:#2781D5;
+    box-shadow: 0px 0px 12px #666;
+    z-index:2;
+}
+.plan_hover li {
+    background:none;
+    color:#fff;
+    font-weight:bold;
+    font-size:16px;
+}
+.plan_hover a {
+    background: #ffcf06 !important; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffcf06 0%, #f1bb00 100%) !important; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffcf06), color-stop(100%,#f1bb00)) !important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffcf06 0%,#f1bb00 100%) !important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffcf06 0%,#f1bb00 100%) !important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffcf06 0%,#f1bb00 100%) !important; /* IE10+ */
+    background: linear-gradient(to bottom, #ffcf06 0%,#f1bb00 100%) !important; /* W3C */
+    color:#333 !important;
+    width:80%;
+}
+.plan_hover li:nth-child(even), .plan_hover li:nth-child(odd) {
+    background:transparent;
+}
+#formZones, #formShipping, #formPayment {
+    margin:0px;
+    padding:0px;
+    list-style:none;
+}
+#formZones li, #formShipping li, #formPayment li {
+    margin: 2px 10px;
+    padding:2px 10px;
+    width:28%;
+    float:left;
+}
+#formZones li:nth-child(even), #formShipping li:nth-child(even), #formPayment li:nth-child(even) {
+    background:#e0e0e0;
+}
+#formZones li:hover, #formShipping li:hover, #formPayment li:hover {
+    background:#f0f0f0;
+}
+#formZones li.selected, #formShipping li.selected, #formPayment li.selected {
+    background:#87BB40 !important;
+}
+#formZones input, #formShipping input, #formPayment input {
+    float:left;
+}
+#formZones label, #formShipping label, #formPayment label {
+    width:90%;
+    line-height:12px;
+    font-weight:bold;
+}

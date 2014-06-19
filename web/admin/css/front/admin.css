@@ -1,0 +1,286 @@
+@charset "utf-8";
+html, body {margin-top:18px}
+#adminTopNav {
+    position:absolute !important;
+    top:0px !important;
+    left:0px !important;
+    background:#000 !important;
+    width:100% !important;
+    height:36px !important;
+    display:block !important;
+    color:#fff !important;
+    border-bottom:1px solid #900 !important;
+    z-index:999 !important;
+}
+
+#adminTopNav ul {
+    margin:0px !important;
+    margin-right:2px !important;
+}
+
+#adminTopNav ul li {
+    margin:0px !important;
+    padding:0px 8px !important;
+    min-width:20px !important;
+    width:auto !important;
+    display:inline !important;
+    float:left !important;
+    position:relative !important;
+    cursor:pointer !important;
+    border-right:1px solid #2f2f2f !important;
+}
+
+#adminTopNav ul li:first-child {
+    border-left:1px solid #2f2f2f !important;
+}
+
+#adminTopNav ul li a {
+    color:#eeeeee !important;
+    text-decoration:none !important;
+    display:block !important;
+    float:left !important;
+}
+#adminTopNav ul li:hover,.selected {
+    background:#212121 !important;
+}
+
+#adminTopNav ul li span {
+    display:block !important;
+    padding:11px 6px !important;
+    float:left !important;
+}
+
+#adminTopNav ul li img {
+    float:left !important;
+    display:block !important;
+    margin:9px 2px 11px 4px !important;
+}
+
+#adminTopNav ul li ul {
+    position:absolute !important;
+    left:-1px !important;
+    display:none !important;
+    top:35px !important;
+    margin-top:0px !important;
+    background:#2f2f2f !important;
+    padding:0 1px 1px 1px !important;
+    border:1px solid #1d1d1d !important;
+    z-index:100 !important;
+}
+
+#adminTopNav ul li ul li {
+    display:block !important;
+    float:none !important;
+    border-top:1px solid #2f2f2f !important;
+    background:#212121 !important;
+    border-right:none !important;
+    border-bottom:1px solid #141414 !important;
+}
+
+#adminTopNav ul li ul li:first-child {
+    border-left:none !important;
+}
+
+#adminTopNav ul li ul li a {
+    width:100px !important;
+    padding:6px 10px 7px 36px !important;
+    font-size:11px !important;
+    text-transform:none !important;
+    color:#c5c5c5 !important;
+    font-weight:normal !important;
+    background-color:transparent !important;
+    float:none !important;
+}
+
+#adminTopNav ul li ul li a:hover {
+    background-color:transparent !important;
+    font-weight:normal !important;
+    color:#a4a4a4 !important;
+}
+
+#adminTopNav ul li ul li:hover {
+    background:#1d1d1d !important;
+}
+.placeholder {
+    background:#e7e7e7 !important;
+    border:dashed 2px #900 !important;
+    height: 120px !important;
+}
+.actions {
+    position: absolute !important;
+    top:auto !important;
+    left:auto !important;
+    background:#ccc !important;
+    border: solid 1px #999 !important;
+    display:none !important;
+    z-index:999 !important;
+}
+.actions p {
+    color:#000 !important;
+    font:normal 10px arial !important;
+    float:none !important;
+}
+.actions ul {
+    padding:0px !important;
+    margin:0px !important;
+    list-style:none !important;
+}
+.actions li {
+    
+}
+.administrable:hover > .actions {
+    display:block !important;
+}
+.admin-icons {
+    margin:3px !important;
+    width:16px !important;
+    height:16px !important;
+    display:block !important;
+    float:left !important;
+}
+.move { background: url(../../image/icons/color/arrow-in-out.png) left top no-repeat !important;}
+.lock { background: url(../../image/icons/color/pin.png) left top no-repeat !important;}
+.style { background: url(../../image/icons/color/palette.png) left top no-repeat !important;}
+.config { background: url(../../image/icons/color/wrench-screwdriver.png) left top no-repeat !important;}
+.delete { background: url(../../image/icons/color/cross.png) left top no-repeat !important;}
+.panel-lateral {
+    position:fixed !important;
+    top: 0px !important;
+    left:-400px !important;
+    padding:20px !important;
+    padding-top:40px !important;
+    background: #ffffff !important; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%) !important; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)) !important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%) !important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%) !important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%) !important; /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%) !important; /* W3C */
+    border-right:solid 1px #ccc !important;
+    width:360px !important;
+    height:90% !important;
+    overflow:auto  !important;
+    box-shadow: 0px 3px 15px #666 !important;
+    z-index:990 !important;
+}
+.panel-lateral > div:first-child {
+    margin:0px auto !important;
+    width:380px !important;
+}
+.panel-lateral a, .panel-lateral a:visited {
+    background:transparent !important;
+    color:#233BBD !important;
+    font:normal 10px Arial !important;
+}
+.panel-lateral .button {
+    background:#233BBD !important;
+    color:#fff !important;
+}
+.panel-lateral input {
+    border:solid 1px #ccc !important;
+    width:140px !important;
+    height:20px !important;
+    border-radius: 2px !important;
+}
+.panel-lateral input[type=radio] {
+    border:solid 1px #ccc !important;
+    width:10px !important;
+    height:10px !important;
+    box-shadow:inset 1px 1px 1px #666 !important;
+}
+.panel-lateral input[type=checkbox] {
+    border:solid 1px #ccc !important;
+    width:12px !important;
+    height:12px !important;
+    box-shadow:inset 1px 1px 1px #666 !important;
+}
+.panel-lateral input[type=number] {
+    border:solid 1px #ccc !important;
+    width:30px !important;
+    float:left;
+}
+.panel-lateral td {
+    font:normal 9px arial !important;
+}
+.panel-lateral .label {
+    position:absolute !important;
+    top:auto !important;
+    left:auto !important;
+    margin-left:380px !important;
+    padding:4px !important;
+    background-color:#f0f0f0 !important;
+    background-position: 5px 5px !important;
+    width:20px !important;
+    height:20px !important;
+    border-right:solid 1px #ccc !important;
+    border-radius: 0px 5px 5px 0px !important;
+    box-shadow: 0px 0px 4px #ccc !important;
+    z-index:999 !important;
+}
+.panel-lateral .slider {
+    width:120px !important;
+    display:block !important;
+    float:left !important;
+}
+.panel-lateral .style { background-image:url(../../image/icons/color/palette.png) !important; background-repeat: no-repeat !important; margin-top:10px !important; }
+.panel-lateral .tools { background-image:url(../../image/icons/color/wrench-screwdriver.png) !important; background-repeat: no-repeat !important; margin-top:40px !important; }
+.style-icons {
+    margin:5px !important;
+    width:24px !important;
+    height:24px !important;
+    display:block !important;
+    float: left !important;
+}
+.neco-color-picker-transparency {
+    margin-top:-150px !important;
+    width:10px !important;
+}
+.style-icons.save { background: url(../../image/icons/color/disk-return-black.png) transparent no-repeat !important; }
+.style-icons.clean { background: url(../../image/icons/color/draw_convolve.png) transparent no-repeat !important; }
+.style-icons.copy { background: url(../../image/icons/color/page_copy.png) transparent no-repeat !important; }
+.style-icons.paste { background: url(../../image/icons/color/paste_plain.png) transparent no-repeat !important; }
+.style-icons.print { background: url(../../image/icons/color/printer.png) transparent no-repeat !important; }
+.style-icons.help { background: url(../../image/icons/color/help.png) transparent no-repeat !important; }
+.style-icons.close { background: url(../../image/icons/color/cancel.png) transparent no-repeat !important; float:right !important;padding-left: 24px !important; }
+
+.style-icons.italic { background: url(../../image/icons/panel/italic.gif) transparent no-repeat !important; }
+.style-icons.italicOn { background: url(../../image/icons/panel/italic_a.gif) transparent no-repeat !important; }
+.style-icons.bold { background: url(../../image/icons/panel/bold.gif) transparent no-repeat !important; }
+.style-icons.boldOn { background: url(../../image/icons/panel/bold_a.gif) transparent no-repeat !important; }
+.style-icons.uppercase { background: url(../../image/icons/panel/allcaps.gif) transparent no-repeat !important; }
+.style-icons.uppercaseOn { background: url(../../image/icons/panel/allcaps_a.gif) transparent no-repeat !important; }
+.style-icons.lowercase { background: url(../../image/icons/panel/smallcaps.gif) transparent no-repeat !important; }
+.style-icons.lowercaseOn { background: url(../../image/icons/panel/smallcaps_a.gif) transparent no-repeat !important; }
+.style-icons.underline { background: url(../../image/icons/panel/uline.gif) transparent no-repeat !important; }
+.style-icons.underlineOn { background: url(../../image/icons/panel/uline_a.gif) transparent no-repeat !important; }
+.style-icons.line-through { background: url(../../image/icons/panel/sthrough.gif) transparent no-repeat !important; }
+.style-icons.line-throughOn { background: url(../../image/icons/panel/sthrough_a.gif) transparent no-repeat !important; }
+.style-icons.align-left { background: url(../../image/icons/panel/left.gif) transparent no-repeat !important; }
+.style-icons.align-leftOn { background: url(../../image/icons/panel/left_a.gif) transparent no-repeat !important; }
+.style-icons.align-center { background: url(../../image/icons/panel/center.gif) transparent no-repeat !important; }
+.style-icons.align-centerOn { background: url(../../image/icons/panel/center_a.gif) transparent no-repeat !important; }
+.style-icons.align-right { background: url(../../image/icons/panel/right.gif) transparent no-repeat !important; }
+.style-icons.align-rightOn { background: url(../../image/icons/panel/right_a.gif) transparent no-repeat !important; }
+.style-icons.align-justify { background: url(../../image/icons/panel/justify.gif) transparent no-repeat !important; }
+.style-icons.align-justifyOn { background: url(../../image/icons/panel/justify_a.gif) transparent no-repeat !important; }
+/** custom jquery-ui sliders **/
+.ui-slider-horizontal {
+    background:#fff !important;
+    height:10px !important;
+    border:none !important;
+    border-radius:2px !important;
+    box-shadow:inset 0px 0px 4px #ccc !important;
+}
+.ui-slider-range {
+    background:#2398e3 !important;
+    height:10px !important;
+    border:none !important;
+    border-radius:2px !important;
+    box-shadow:inset 0px 0px 3px #1d2c51 !important;
+}
+.ui-widget-content > a {
+    background:#fff !important;
+    border-radius:8px !important;
+    box-shadow: 0px 0px 1px 0px #999 !important;
+    border:solid 1px #aaa !important;
+}
