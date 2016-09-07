@@ -1,0 +1,72 @@
+/* neco-content-carousel */
+.neco-content-carousel {
+    position: relative;
+    padding: 15px;
+    margin-top:20px;
+    background:#fff;
+    border-radius: 4px;
+    box-shadow:0px 0px 8px #ccc;
+    text-align: center;
+    min-height:200px;
+    height:auto;
+}
+.neco-content-carousel ul {
+    padding-left: 0px;
+}
+.caroufredsel_wrapper {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+}
+.neco-content-carousel li {
+    margin: 0px 7px;
+    padding:0px;
+    min-width:110px;
+    width:auto;
+    height:200px;
+    display: block;
+    text-align:center;
+	cursor:pointer;
+    float: left;
+}
+.neco-content-carousel li:hover {background: #f3f3f3}
+.neco-content-carousel img {
+    background-color: #fff;
+	border:solid 1px #DBDBDB;
+}
+.neco-content-carousel a {color: #333}
+.neco-content-carousel b {font:normal 11px Arial;margin-left:10px}
+.neco-content-carousel-prev, .neco-content-carousel-next, .neco-content-carousel-pager a {
+    background: url(images/neco-content-carousel-sprite.png) no-repeat transparent;
+}
+.neco-content-carousel-prev, .neco-content-carousel-next {
+    width: 26px;
+    height: 26px;
+    display: block;
+    position: absolute;
+    top: 179px;
+}
+.neco-content-carousel-prev {left: 3px;background-position: 0px 0px;}
+.neco-content-carousel-prev:hover {background-position: 0px -26px; }
+.neco-content-carousel-next {right: 3px;background-position: -29px 0px; }
+.neco-content-carousel-next:hover {background-position: -29px -26px;}
+.neco-content-carousel-prev.disabled, a.next.disabled {
+    cursor: default;
+}	 
+.neco-content-carousel-prev span, .neco-content-carousel-next span {display: none}
+.neco-content-carousel-pager {text-align: center}
+.neco-content-carousel-pager a {
+    margin: 0px 5px 0px 0px;
+    background-position: -59px 0px;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+}
+.neco-content-carousel-pager a.selected {
+    background-position: -59px -10px;
+    cursor: default;
+}
+.neco-content-carousel-pager a span {
+    display: none;
+}
+/* neco-content-carousel */

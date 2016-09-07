@@ -1,0 +1,186 @@
+/* STYLE FOR PLUGIN */			
+
+.plasma_player { 
+	width:100%; 
+	height:300px; 
+	display:block;
+	overflow:hidden; 
+	background:transparent;
+	position:relative;
+	border: 5px solid black;
+	-moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+  margin: 0px auto;
+	}
+	
+.plasma_player > ul { 
+	width: 100%;
+	height: 100%;
+	position:relative;
+	display:block;
+	overflow:hidden; 
+	margin: 0px; 
+	padding: 0px;
+	border: 5px solid black;
+	}			
+	
+.plasma_player .slide {
+	width:100%;
+	height: 100%;
+	position: absolute;   
+	text-decoration: none; 
+	display: block;
+	overflow:hidden;
+	background-color: black;
+	}
+	
+.plasma_player .title {
+	background:black;
+	color: white;
+	position: absolute;    
+	display: block;
+	padding: 2px 5px;
+	margin: 10px;
+	border: 1px solid gray;
+	
+	-moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  
+  -moz-box-shadow: 5px 5px 10px black;
+  -webkit-box-shadow: 5px 5px 10px black;
+  box-shadow: 5px 5px 10px black;
+  }
+  
+.plasma_player .navigation {
+	position: absolute;    
+	display: block;
+	background: black;
+	}	
+	
+.plasma_player .navigation_prev, .navigation_next, .navigation_play{
+	position: absolute; 
+	margin: 0px;
+	padding: 0px;
+	width: 24px;
+	height: 24px;
+	background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid white;
+	}
+	
+.plasma_player .navigation_prev:hover,
+.plasma_player .navigation_next:hover,
+.plasma_player .navigation_play:hover	{
+	background-color: gray;
+  }
+.plasma_player .navigation_prev:active,
+.plasma_player .navigation_next:active,
+.plasma_player .navigation_play:active  {
+	background-color: red;
+  }  	
+
+.plasma_player .navigation_prev {
+	background-image:url('images/gray/prev.png');
+  }
+  
+.plasma_player .navigation_play {
+  
+  }
+  
+.plasma_player .nav_playing {
+	background-image:url('images/gray/play.png');
+  } 
+  
+.plasma_player .nav_paused {
+	background-image:url('images/gray/pause.png');
+  }    
+  
+.plasma_player .navigation_next {
+	background-image:url('images/gray/next.png');
+  }
+  
+.plasma_player .navigation_progressbar {
+	position: absolute; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+	background-color: white;
+	width: 0px;
+	height: 0px;
+	-moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  }	      						
+	
+.vertical_slide_shadow {
+	-moz-box-shadow: -20px 0px 30px black;
+  -webkit-box-shadow: -20px 0px 30px black;
+  box-shadow: -20px 0px 30px black;
+  /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=270, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=270, Color='#000000');
+	zoom: 1;
+}
+
+.horizontal_slide_shadow {
+	-moz-box-shadow: 0px -20px 30px black;
+  -webkit-box-shadow: 0px -20px 30px black;
+  box-shadow: 0px -20px 30px black;
+  /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=0, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=0, Color='#000000');
+	zoom: 1;
+}
+
+.top_navi_shadow {
+	-moz-box-shadow: 0px -10px 10px black;
+  -webkit-box-shadow: 0px -10px 10px black;
+  box-shadow: 0px -10px 10px black;
+  /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=0, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=0, Color='#000000');
+	zoom: 1;	
+}
+
+.bottom_navi_shadow {
+	-moz-box-shadow: 0px 10px 10px black;
+  -webkit-box-shadow: 0px 10px 10px black;
+  box-shadow: 0px 10px 10px black;
+  /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=180, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=180, Color='#000000');	
+}
+
+.left_navi_shadow {
+	-moz-box-shadow: -10px 0px 10px black;
+  -webkit-box-shadow: -10px 0px 10px black;
+  box-shadow: -10px 0px 10px black;
+  /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=270, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=270, Color='#000000');	
+}
+
+.right_navi_shadow {
+	-moz-box-shadow: 10px 0px 10px black;
+  -webkit-box-shadow: 10px 0px 10px black;
+  box-shadow: 10px 0px 10px black;
+  /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=90, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=90, Color='#000000');	
+}
