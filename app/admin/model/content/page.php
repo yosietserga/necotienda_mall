@@ -182,7 +182,7 @@ class ModelContentPage extends Model {
                 FROM " . DB_PREFIX . "post 
                 WHERE parent_id = '" . (int)$post_id . "' AND post_type = 'page')");
                 
-    		$this->db->query("DELETE FROM " . DB_PREFIX . "post WHERE parent_id = '" . (int)$post_id . "'");
+    		$this->db->query("DELETE FROM " . DB_PREFIX . "post WHERE parent_id = '" . (int)$category_id . "'");
         }
         
 		$this->cache->delete("page");

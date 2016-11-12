@@ -1,11 +1,18 @@
 <?php echo $header; ?>
-<aside id="featured"></aside>
-<section id="maincontent">
-    <div class="container_24">
-        <section>
-        
-            <div class="grid_24">
+<?php echo $navigation; ?>
+<div class="container">
+    <section id="maincontent">
+        <section id="content">
+
+            <aside id="featured"></aside>
+
+            <div class="grid_12">
+                <div id="featuredContent">
+                    <?php if($featuredWidgets) { ?><ul class="widgets"><?php foreach ($featuredWidgets as $widget) { ?>{%<?php echo $widget; ?>%}<?php } ?></ul><?php } ?>
+                </div>
+            </div>
             
+            <section>
                 <h1>Crear Lista de Necesidades</h1>
                 
                 <div>
@@ -63,40 +70,39 @@
               
                 <div id="itemsWrapper">
                     <form action="<?php echo str_replace('&', '&amp;', $action); ?>" method="post" enctype="multipart/form-data" id="formSale">
-                    <div class="grid_24 product">
-                        <input type="hidden" name="Items[0][image]" value="blanco.png">
-                        <input type="hidden" name="Items[0][model]" value="dsfds">
-                        <input type="hidden" name="Items[0][qty]" value="12">
-                        <input type="hidden" name="Items[0][plan_id]" value="1">
-                        <div class="grid_2">
-                            <img width="100" height="100" alt="sfdsf" src="assets/images/no_image.jpg" />
-                        </div>
-                        <div class="grid_17">
-                            <a class="button red itemClose">Cerrar</a>
-                            <b class="itemName">sfdsf</b>
-                            <div class="itemModel">dsfds</div>
-                            <div class="itemPlan">Gratis</div>
-                            <div class="itemCategories">
-                                <span>Accesorios</span>
-                                <span>Cuadros y Pinturas</span>
-                                <span>Esculturas</span>
+                        <div class="grid_24 product">
+                            <input type="hidden" name="Items[0][image]" value="blanco.png">
+                            <input type="hidden" name="Items[0][model]" value="dsfds">
+                            <input type="hidden" name="Items[0][qty]" value="12">
+                            <input type="hidden" name="Items[0][plan_id]" value="1">
+                            <div class="grid_2">
+                                <img width="100" height="100" alt="sfdsf" src="assets/images/no_image.jpg" />
                             </div>
+                            <div class="grid_17">
+                                <a class="button red itemClose">Cerrar</a>
+                                <b class="itemName">sfdsf</b>
+                                <div class="itemModel">dsfds</div>
+                                <div class="itemPlan">Gratis</div>
+                                <div class="itemCategories">
+                                    <span>Accesorios</span>
+                                    <span>Cuadros y Pinturas</span>
+                                    <span>Esculturas</span>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <a class="button" onclick="$('#attributesWrapper0').slideToggle();return false;" href="#">text_attributes</a>
+                            <a class="button" onclick="$('#descriptionWrapper0').slideToggle();return false;" href="#">text_description</a>
+                            <div class="clear"></div>
+                            <div class="itemAtrributes" id="attributesWrapper0" style="display:none;">text_no_attributes</div>
+                            <div class="clear"></div>
+                            <div class="itemDescription" id="descriptionWrapper0" style="display:none;"></div>
                         </div>
-                        <div class="clear"></div>
-                        <a class="button" onclick="$('#attributesWrapper0').slideToggle();return false;" href="#">text_attributes</a>
-                        <a class="button" onclick="$('#descriptionWrapper0').slideToggle();return false;" href="#">text_description</a>
-                        <div class="clear"></div>
-                        <div class="itemAtrributes" id="attributesWrapper0" style="display:none;">text_no_attributes</div>
-                        <div class="clear"></div>
-                        <div class="itemDescription" id="descriptionWrapper0" style="display:none;"></div>
-
-                </div>
                     </form>
-            
-            </div>
+                </div>
+            </section>
         </section>
-    </div>
-</section>
+    </section>
+</div>
 <script>
 $(function(){
     $('input.image').on('change',function(e){

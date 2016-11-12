@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "cconfig.php");
-define('ADMIN_PATH','admin');
+define('ADMIN_PATH','necopc');
 
 $defaultPath    = dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR;
 $adminPath      = dirname(__FILE__) . DIRECTORY_SEPARATOR;

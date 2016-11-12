@@ -1,38 +1,51 @@
 <?php echo $header; ?>
 <?php echo $navigation; ?>
-<section id="maincontent">
-    <section id="content">
-        <div class="grid_16">
-            <ul id="breadcrumbs" class="nt-editable">
-            <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-                <li><a title="<?php echo $breadcrumb['text']; ?>" href="<?php echo str_replace('&', '&amp;', $breadcrumb['href']); ?>"><?php echo $breadcrumb['text']; ?></a></li>
+<div class="container">
+    <section id="maincontent">
+        <section id="content">
+            <div class="grid_12">
+                <div id="featuredContent">
+                <ul class="widgets"><?php if($featuredWidgets) { foreach ($featuredWidgets as $widget) { ?>{%<?php echo $widget; ?>%}<?php } } ?></ul>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+            <?php if ($column_left) { ?><aside id="column_left" class="grid_3"><?php echo $column_left; ?></aside><?php } ?>
+
+            <?php if ($column_left && $column_right) { ?>
+            <div class="grid_6">
+            <?php } elseif ($column_left || $column_right) { ?>
+            <div class="grid_9">
+            <?php } else { ?>
+            <div class="grid_12">
             <?php } ?>
-            </ul>
-        </div>
-        
-        <div class="clear"></div><br /><br />
-        
-        <aside id="column_left"><?php echo $column_left; ?></aside>
-        <div class="grid_13">
-            <h1><?php echo $heading_title; ?></h1>
-            <div class="clear"></div>
-            <?php if($categories) { ?>
-            <nav class="content">
-                <ul class="category_view">
-                <?php foreach($categories as $category) { ?>
-                    <li>
-                        <a class="thumb" href="<?php echo str_replace('&', '&amp;', $category['href']); ?>" title="<?php echo $category['name']; ?>"><img src="<?php echo $category['thumb']; ?>" alt="<?php echo $category['name']; ?>" /></a><br />
-                        <a class="name" href="<?php echo str_replace('&', '&amp;', $category['href']); ?>" title="<?php echo $category['name']; ?>"><?php echo $category['name']; ?></a>
-                    </li>
-                <?php } ?>
-                </ul>
-            </nav>
-            <?php } ?>
-            <div class="clear"></div>
-            <?php if($widgets) { ?><ul class="widgets"><?php foreach ($widgets as $widget) { ?>{%<?php echo $widget; ?>%}<?php } ?></ul><?php } ?>
-            <div class="clear"></div>
             
-        </div>
+                <?php if($categories) { ?>
+		<section id="grid" class="grid clearfix">
+                    <?php foreach($categories as $category) { ?>
+                    <a href="<?php echo str_replace('&', '&amp;', $category['href']); ?>" data-path-hover="M 0,0 0,38 90,58 180.5,38 180,0 z">
+                        <figure>
+                            <img src="<?php echo $category['thumb']; ?>" alt="<?php echo $category['name']; ?>" />
+                            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 0 0 L 0 182 L 90 126.5 L 180 182 L 180 0 L 0 0 z "/></svg>
+                            <figcaption>
+                                <h2><?php echo $category['name']; ?></h2>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    <?php } ?>
+                </section>
+                <?php } ?>
+                
+                <div class="clear"></div>
+                <?php if($widgets) { ?><ul class="widgets"><?php foreach ($widgets as $widget) { ?>{%<?php echo $widget; ?>%}<?php } ?></ul><?php } ?>
+                <div class="clear"></div>
+            
+            </div>
+                
+            <?php if ($column_right) { ?><aside id="column_right" class="grid_3"><?php echo $column_right; ?></aside><?php } ?>
+            
+        </section>
     </section>
-</section>
+</div>
 <?php echo $footer; ?>

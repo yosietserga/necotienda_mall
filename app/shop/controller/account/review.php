@@ -90,8 +90,8 @@ class ControllerAccountReview extends Controller {
 		$this->children = array(
 			'common/nav',
 			'account/column_left',
-			'account/footer',
-			'account/header'
+			'common/footer',
+			'common/header'
 		);
 
 		$this->response->setOutput($this->render(TRUE), $this->config->get('config_compression'));		
@@ -239,8 +239,8 @@ class ControllerAccountReview extends Controller {
     		$this->children = array(
     			'common/nav',
     			'account/column_left',
-    			'account/footer',
-    			'account/header'
+    			'common/footer',
+    			'common/header'
     		);
     
     		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/account/review_read.tpl')) {
@@ -259,11 +259,11 @@ class ControllerAccountReview extends Controller {
 			}
 			
     		$this->children = array(
-    			'account/header',
+    			'common/header',
     			'common/nav',
     			'common/column_left',
     			'common/column_right',
-    			'account/footer'
+    			'common/footer'
     		);
             
 			$this->response->setOutput($this->render(true), $this->config->get('config_compression'));

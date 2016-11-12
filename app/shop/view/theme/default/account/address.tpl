@@ -1,17 +1,33 @@
 <?php echo $header; ?>
 <?php echo $navigation; ?>
-<section id="maincontent">
-    <section id="content">
-        <aside id="column_left"><?php echo $column_left; ?></aside>
-        
-        <div class="grid_13">
-        
-            <h1><?php echo $heading_title; ?></h1>
-            <?php if ($error_warning) { ?><div class="message warning"><?php echo $error_warning; ?></div><?php } ?>
-              
+<div class="container">
+    <section id="maincontent">
+        <section id="content">
+            <div class="grid_12">
+                <div id="featuredContent">
+                <ul class="widgets"><?php if($featuredWidgets) { foreach ($featuredWidgets as $widget) { ?>{%<?php echo $widget; ?>%}<?php } } ?></ul>
+                </div>
+            </div>
+
             <div class="clear"></div>
+
+            <?php if ($column_left) { ?><aside id="column_left" class="grid_3"><?php echo $column_left; ?></aside><?php } ?>
+
+            <?php if ($column_left && $column_right) { ?>
+            <div class="grid_6">
+            <?php } elseif ($column_left || $column_right) { ?>
+            <div class="grid_9">
+            <?php } else { ?>
+            <div class="grid_12">
+            <?php } ?>
+
+        
+                <h1><?php echo $heading_title; ?></h1>
+                <?php if ($error_warning) { ?><div class="message warning"><?php echo $error_warning; ?></div><?php } ?>
+
+                <div class="clear"></div>
             
-            <form action="<?php echo str_replace('&', '&amp;', $action); ?>" method="post" enctype="multipart/form-data" id="form">
+                <form action="<?php echo str_replace('&', '&amp;', $action); ?>" method="post" enctype="multipart/form-data" id="form">
                     <div class="row">
                         <label for="country_id"><?php echo $Language->get('entry_country'); ?></label>
                         <select name="country_id" id="country_id" title="Selecciona el pa&iaacute;s de la facturaci&oacute;n" onchange="$('select[name=\'zone_id\']').load('index.php?r=account/register/zone&country_id=' + this.value + '&zone_id=<?php echo $zone_id; ?>');" showquick="off">
@@ -61,16 +77,18 @@
                         
                     <div class="clear"></div>
                     
-                <input type="hidden" name="company" value="<?php echo $company; ?>" />
-                <input type="hidden" name="firstname" value="<?php echo $firstname; ?>" />
-                <input type="hidden" name="lastname" value="<?php echo $lastname; ?>" />
-            </form>
+                    <input type="hidden" name="company" value="<?php echo $company; ?>" />
+                    <input type="hidden" name="firstname" value="<?php echo $firstname; ?>" />
+                    <input type="hidden" name="lastname" value="<?php echo $lastname; ?>" />
+                </form>
              
-        </div>
-        
+            </div>
+            
+            <?php if ($column_right) { ?><aside id="column_right" class="grid_3"><?php echo $column_right; ?></aside><?php } ?>
+            
+        </section>
     </section>
-    
-</section>
+</div>
 <script type="text/javascript">
 $('#zone_id').load('index.php?r=account/address/zone&country_id=<?php echo $country_id; ?>&zone_id=<?php echo $zone_id; ?>');
 </script>

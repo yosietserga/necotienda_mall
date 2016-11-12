@@ -1,162 +1,189 @@
-<?php  
+<?php
+
 class ControllerModuleSpecial extends Controller {
-	protected function index($widget=null) {
+
+    protected function index($widget = null) {
         if (isset($widget)) {
-            $this->data['settings'] = $settings = (array)unserialize($widget['settings']);
+            $this->data['settings'] = $settings = (array) unserialize($widget['settings']);
             $this->data['widget_hook'] = $this->data['widgetName'] = $widget['name'];
         }
-        
-		if (isset($settings['title'])) {
-            $this->data['heading_title'] = $settings['title'];
-		} else {
-            $this->data['heading_title'] = $this->language->get('heading_title');
-		}
-    	
-    	$limit = ((int)$settings['limit']) ? (int)$settings['limit'] : 4;
-		$this->prefetch($limit);
-        
-		$this->id = 'special';
 
-		if ($widget['position'] == 'main') {
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/module/special_home.tpl')) {
-				$this->template = $this->config->get('config_template') . '/module/special_home.tpl';
-			} else {
-				$this->template = 'default/module/special_home.tpl';
-			}
-		} else {
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/module/special.tpl')) {
-				$this->template = $this->config->get('config_template') . '/module/special.tpl';
-			} else {
-				$this->template = 'default/module/special.tpl';
-			}
-		}
-		
-		$this->render();
-	}
-    
+        if (isset($settings['title'])) {
+            $this->data['heading_title'] = $settings['title'];
+        } else {
+            $this->data['heading_title'] = $this->language->get('heading_title');
+        }
+
+        $limit = ((int) $settings['limit']) ? (int) $settings['limit'] : 4;
+        $this->data['products'] = array();
+        $this->prefetch($limit);
+
+        $this->id = 'special';
+
+        if ($widget['position'] == 'main' || $widget['position'] == 'featuredContent') {
+            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/module/special_home.tpl')) {
+                $this->template = $this->config->get('config_template') . '/module/special_home.tpl';
+            } else {
+                $this->template = 'default/module/special_home.tpl';
+            }
+        } else {
+            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/module/special.tpl')) {
+                $this->template = $this->config->get('config_template') . '/module/special.tpl';
+            } else {
+                $this->template = 'default/module/special.tpl';
+            }
+        }
+
+        $this->render();
+    }
+
     public function home() {
         $this->prefetch();
-        
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/store/products.tpl')) {
-			$this->template = $this->config->get('config_template') . '/store/products.tpl';
-		} else {
-			$this->template = 'default/store/products.tpl';
-		}
-        
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/store/products.tpl')) {
+            $this->template = $this->config->get('config_template') . '/store/products.tpl';
+        } else {
+            $this->template = 'default/store/products.tpl';
+        }
+
+        $this->response->setOutput($this->render(true), $this->config->get('config_compression'));
     }
-    
+
     protected function prefetch($limit) {
-		$this->language->load('module/special');
-		$this->load->model('store/product');
-		$results = $this->modelProduct->getProductSpecials('pd.name', 'ASC', 0, $this->config->get('special_limit'));
+        $this->language->load('module/special');
+        $this->load->model('store/product');
+        $Url = new Url($this->registry);
+        $results = $this->modelProduct->getProductSpecials('pd.name', 'ASC', 0, $limit);
         $this->load->auto('store/review');
-      	$this->data['heading_title'] = $this->language->get('heading_title');
-		$this->data['button_see_product'] = $this->language->get('button_see_product');
-		$this->data['button_add_to_cart'] = $this->language->get('button_add_to_cart');
-		$this->data['products'] = array();
-			
-        list($dia,$mes,$ano) = explode('-',date('d-m-Y'));
-        $l = ((int)$this->config->get('config_new_days') > 30) ? 30 : $this->config->get('config_new_days');
-        if ( ($dia = $dia - $l) <= 0) {
+        $this->data['heading_title'] = $this->language->get('heading_title');
+        $this->data['button_see_product'] = $this->language->get('button_see_product');
+        $this->data['button_add_to_cart'] = $this->language->get('button_add_to_cart');
+        $this->data['products'] = array();
+
+        list($dia, $mes, $ano) = explode('-', date('d-m-Y'));
+        $l = ((int) $this->config->get('config_new_days') > 30) ? 30 : $this->config->get('config_new_days');
+        if (($dia = $dia - $l) <= 0) {
             $dia = $dia + 30;
-            if ($dia <= 0) $dia = 1;
+            if ($dia <= 0)
+                $dia = 1;
             $mes = $mes - 1;
             if ($mes <= 0) {
                 $mes = $mes + 12;
                 $ano = $ano - 1;
             }
         }
-		foreach ($results as $key => $result) {
-		    $image = !empty($result['image']) ? $result['image'] : 'no_image.jpg';
+        foreach ($results as $key => $result) {
+            $image = !empty($result['image']) ? $result['image'] : 'no_image.jpg';
 
-			if ($this->config->get('config_review')) {
-				$rating = $this->modelReview->getAverageRating($result['product_id']);	
-			} else {
-				$rating = false;
-			}
+            if ($this->config->get('config_review')) {
+                $rating = $this->modelReview->getAverageRating($result['product_id']);
+            } else {
+                $rating = false;
+            }
 
-			$special = false;
-			$discount = $this->modelProduct->getProductDiscount($result['product_id']);
-			
-			if ($discount) {
-				$price = $this->currency->format($this->tax->calculate($discount, $result['tax_class_id'], $this->config->get('config_tax')));
-			} else {
-				$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
-				$special = $this->modelProduct->getProductSpecial($result['product_id']);
-				if ($special) {
-					$special = $this->currency->format($this->tax->calculate($special, $result['tax_class_id'], $this->config->get('config_tax')));
-				}						
-			}
-						
-			$options = $this->modelProduct->getProductOptions($result['product_id']);
-			
-			if ($options) {
-				$add = Url::createUrl('store/product',array('product_id'=>$result['product_id']));
-			} else {
-				$add = Url::createUrl('checkout/cart',array('product_id'=>$result['product_id']));
-			}
-            
-            list($pdia,$pmes,$pano) = explode('-',date('d-m-Y',strtotime($result['created'])));
-            
+            $special = false;
+            $discount = $this->modelProduct->getProductDiscount($result['product_id']);
+
+            if ($discount) {
+                $price = $this->currency->format($this->tax->calculate($discount, $result['tax_class_id'], $this->config->get('config_tax')));
+            } else {
+                $price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
+                $special = $this->modelProduct->getProductSpecial($result['product_id']);
+                if ($special) {
+                    $special = $this->currency->format($this->tax->calculate($special, $result['tax_class_id'], $this->config->get('config_tax')));
+                }
+            }
+
+            $options = $this->modelProduct->getProductOptions($result['product_id']);
+
+            if ($options) {
+                $add = $Url::createUrl('store/product', array('product_id' => $result['product_id']));
+            } else {
+                $add = $Url::createUrl('checkout/cart', array('product_id' => $result['product_id']));
+            }
+
+            list($pdia, $pmes, $pano) = explode('-', date('d-m-Y', strtotime($result['created'])));
+
             if ($special) {
                 $sticker = '<b class="oferta"></b>';
             } elseif ($discount) {
                 $sticker = '<b class="descuento"></b>';
-            } elseif (strtotime($dia."-".$mes."-".$ano) <= strtotime($pdia."-".$pmes."-".$pano)) {
+            } elseif (strtotime($dia . "-" . $mes . "-" . $ano) <= strtotime($pdia . "-" . $pmes . "-" . $pano)) {
                 $sticker = '<b class="nuevo"></b>';
             } else {
                 $sticker = "";
             }
-            
-			$this->load->auto('image');
-			$this->data['products'][] = array(
-				'product_id'    => $result['product_id'],
-				'name'    		=> $result['name'],
-				'model'   		=> $result['model'],
-				'overview'   	=> $result['meta_description'],
-				'rating'  		=> $rating,
-				'stars'   		=> sprintf($this->language->get('text_stars'), $rating),
-				'price'   		=> $price,
-				'sticker'   	=> $sticker,
-				'options'   	=> $options,
-				'special' 		=> $special,
-				'image'   		=> NTImage::resizeAndSave($image, 38, 38),
-				'lazyImage'   		=> NTImage::resizeAndSave('no_image.jpg', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')),
-				'thumb'   		=> NTImage::resizeAndSave($image, $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')),
-				'href'    		=> Url::createUrl('store/product',array('product_id'=>$result['product_id'])),
-				'add'    		=> $add,
-				'created'    	=> $result['created']
-			);
-		}
+
+            $this->load->auto('image');
+            $this->data['products'][] = array(
+                'product_id' => $result['product_id'],
+                'name' => $result['name'],
+                'model' => $result['model'],
+                'overview' => $result['meta_description'],
+                'rating' => $rating,
+                'stars' => sprintf($this->language->get('text_stars'), $rating),
+                'price' => $price,
+                'sticker' => $sticker,
+                'options' => $options,
+                'special' => $special,
+                'image' => NTImage::resizeAndSave($image, 38, 38),
+                'lazyImage' => NTImage::resizeAndSave('no_image.jpg', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')),
+                'thumb' => NTImage::resizeAndSave($image, $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')),
+                'href' => $Url::createUrl('store/product', array('product_id' => $result['product_id'])),
+                'add' => $add,
+                'created' => $result['created']
+            );
+        }
+
+        if (!$this->config->get('config_customer_price')) {
+            $this->data['display_price'] = true;
+        } elseif ($this->customer->isLogged()) {
+            $this->data['display_price'] = true;
+        } else {
+            $this->data['display_price'] = false;
+        }
         
-		if (!$this->config->get('config_customer_price')) {
-			$this->data['display_price'] = true;
-		} elseif ($this->customer->isLogged()) {
-			$this->data['display_price'] = true;
-		} else {
-			$this->data['display_price'] = false;
-		}
+        $this->setvar('sort');
+        $this->setvar('order');
+        $this->setvar('page');
+
+        $page = isset($this->request->get['page']) ? $this->request->get['page'] : 1;
+        $sort = isset($this->request->get['sort']) ? $this->request->get['page'] : 'p.sort_order';
+        $order = isset($this->request->get['order']) ? $this->request->get['order'] : 'ASC';
+
+        $this->load->auto('pagination');
+        $pagination = new Pagination(true);
+        $pagination->total = $product_total;
+        $pagination->page = $page;
+        $pagination->ajax = true;
+        $pagination->limit = $this->config->get('config_catalog_limit');
+        $pagination->text = $this->language->get('text_pagination');
+        $pagination->url = $Url::createUrl('store/category/home', 'category_id=' . $this->request->get['category_id'] . $url . '&page={page}');
+
     }
-    
+
     public function carousel() {
         $json = array();
         $this->load->auto("store/product");
         $this->load->auto('image');
         $this->load->auto('json');
-        
+        $Url = new Url($this->registry);
+
         $json['results'] = $this->modelProduct->getProductSpecials(isset($_GET['limit']) ? $_GET['limit'] : 40);
-        $width  = isset($_GET['width']) ? $_GET['width'] : 80;
+        $width = isset($_GET['width']) ? $_GET['width'] : 80;
         $height = isset($_GET['height']) ? $_GET['height'] : 80;
         foreach ($json['results'] as $k => $v) {
-            if (!file_exists(DIR_IMAGE . $v['image'])) $json['results'][$k]['image'] = HTTP_IMAGE ."no_image.jpg";
+            if (!file_exists(DIR_IMAGE . $v['image']))
+                $json['results'][$k]['image'] = HTTP_IMAGE . "no_image.jpg";
             $json['results'][$k]['thumb'] = NTImage::resizeAndSave($v['image'], $width, $height);
-            $json['results'][$k]['href'] = Url::createUrl('store/product',array('product_id'=>$json['results'][$k]['product_id']));
+            $json['results'][$k]['href'] = $Url::createUrl('store/product', array('product_id' => $json['results'][$k]['product_id']));
             $json['results'][$k]['price'] = $this->currency->format($this->tax->calculate($v['price'], $v['tax_class_id'], $this->config->get('config_tax')));
         }
-        
-        if (!count($json['results'])) $json['error'] = 1;
-        
+
+        if (!count($json['results']))
+            $json['error'] = 1;
+
         $this->response->setOutput(Json::encode($json), $this->config->get('config_compression'));
     }
+
 }

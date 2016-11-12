@@ -257,8 +257,8 @@ class ControllerAccountInvoice extends Controller {
 			$this->children = array(
 			'common/nav',
 			'account/column_left',
-			'account/footer',
-			'account/header'
+			'common/footer',
+			'common/header'
 		);	
 			
 			$this->response->setOutput($this->render(true), $this->config->get('config_compression'));		
@@ -280,8 +280,8 @@ class ControllerAccountInvoice extends Controller {
 			$this->children = array(
 			'common/nav',
 			'common/column_left',
-			'account/footer',
-			'account/header'
+			'common/footer',
+			'common/header'
 		);	
 			
 			$this->response->setOutput($this->render(true), $this->config->get('config_compression'));				

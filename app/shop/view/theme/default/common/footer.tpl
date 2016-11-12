@@ -1,28 +1,52 @@
-<div class="container_16">
+<div class="clear"></div>
+
+<div class="container">
     <footer id="footer">
         <ul class="widgets"><?php foreach ($widgets as $widget) { ?>{%<?php echo $widget; ?>%}<?php } ?></ul>
         
         <div class="clear">&nbsp;</div>
         
-        <div class="grid_16">
-            <p>
-                <a href="<?php echo str_replace('&', '&amp;', $home); ?>">Inicio</a>&nbsp;::&nbsp;
-                <a href="<?php echo str_replace('&', '&amp;', $about_us); ?>">Nosotros</a>&nbsp;::&nbsp;
-                <a href="<?php echo str_replace('&', '&amp;', $special); ?>">Ofertas</a>&nbsp;::&nbsp;
-                <a href="<?php echo str_replace('&', '&amp;', $faq); ?>">Preguntas Frecuentes</a>&nbsp;::&nbsp;
-                <a href="<?php echo str_replace('&', '&amp;', $jobs); ?>">Empleos</a>&nbsp;::&nbsp;
-                <a href="<?php echo str_replace('&', '&amp;', $contact); ?>">Contacto</a>
-            </p>
-        </div>
-        
-        <div class="clear">&nbsp;</div>
-        
-        <div class="grid_16"><p><?php echo $text_powered_by; ?></p></div>
+        <div class="grid_12"><p><?php echo $text_powered_by; ?></p></div>
         
     </footer>
 </div>
 <?php if (count($javascripts) > 0) foreach ($javascripts as $js) { if (empty($js)) continue; ?><script type="text/javascript" src="<?php echo $js; ?>"></script><?php } ?>
+<div id="jsWrapper"></div>
 <?php if ($scripts) echo $scripts; ?>
+<script>
+$(function() {
+    <?php if ($this->session->get('necoexp')) { ?>
+    $.growl({
+        title: '<?php echo $Language->get("Congratulations!"); ?>',
+        message: "NecoExp <?php echo $this->session->get('necoexp'); ?>",
+        style: 'necoexp',
+        icon: 'star',
+        duration:2600
+    });
+    <?php $this->session->clear('necoexp'); ?>
+    <?php } ?>
+    
+    <?php if ($this->session->get('necopoints')) { ?>
+    $.growl({
+        title: '<?php echo $Language->get("Congratulations!"); ?>',
+        message: "NecoPoints <?php echo $this->session->get('necopoints'); ?>",
+        style: 'necopoints',
+        icon: 'send',
+        duration:3000
+    });
+    <?php $this->session->clear('necopoints'); ?>
+    <?php } ?>
+    
+    <?php if ($this->session->get('level_upgraded')) { ?>
+    $.growl({
+        title: '<?php echo $Language->get("Congratulations!"); ?>',
+        message: 'New Level: <?php echo $this->session->get('level_upgraded'); ?>',
+        style: 'new-level'
+    });
+    <?php $this->session->clear('level_upgraded'); ?>
+    <?php } ?>
+});
+</script>
 <div id="fb-root"></div>
 <script type="text/javascript">
     <?php if ($google_analytics_code) { ?>

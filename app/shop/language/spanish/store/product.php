@@ -62,6 +62,7 @@ $_['text_product_finished'] = '<b>Publicaci&oacute;n Finalizada</b><br /><small>
 $_['text_service_policy'] = '<b>Aviso Importante</b><br /><small>Todas las publicaciones y art&iacute;culos ofrecidos en este sitio web no son propiedad del mismo. Este sitio web solo presta un medio de interacci&oacute;n entre compradores y vendedores. No nos hacemos responsables por ninguna negociaci&oacute;n concretada, le recomendamos contactar con el vendedor antes de realizar cualquier oferta.<br />Para mayor informaci&oacute;n, por favor lea los <a href="%">T&eacute;rminos, Condiciones y Pol&iacute;ticas de Uso</a> de este sitio web.</small>';
 $_['text_has_to_paid']      = 'Esta publicaci&oacute;n no se mostrar&aacute; a los dem&aacute;s usuarios hasta que pague el monto correspondiente al plan que seleccion&oacute;. Las opciones Contactar, Comprar y Promocionar estar&aacute;n inhabilitadas hasta entonces.';
 $_['text_has_expire']      = 'Esta publicaci&oacute;n no se mostrar&aacute; a los dem&aacute;s usuarios porque ya finaliz&oacute;. Si desea reactivarla, haga click <a href="%s">Aqu&iacute;</a>';
+$_['text_not_found']      = 'Producto no encontrado';
 
 // Entry
 $_['entry_name']         = 'Su Nombre:';

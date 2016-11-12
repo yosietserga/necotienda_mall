@@ -41,7 +41,7 @@
 <body id="mainbody">
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   
-    <div class="container_16">
+    <div class="container">
         <header id="header">
             <?php if ($logo) { ?><a title="<?php echo $store; ?>" href="<?php echo $Url::createUrl("common/home"); ?>"><img src="<?php echo $logo; ?>" title="<?php echo $store; ?>" alt="<?php echo $store; ?>" /></a><?php } else { ?><a title="<?php echo $store; ?>" href="<?php echo $Url::createUrl("common/home"); ?>"><?php echo $text_store; ?></a><?php } ?>
             <div class="clear"></div><br /><br /><br />
@@ -49,23 +49,24 @@
     </div>
     
     <div class="clear"></div>
-    
-    <section id="maincontent">
-        <section id="content">
-            <div class="grid_16">
-                <?php echo $message; ?>
-                <div class="clear"></div>
-                <?php if($widgets) { ?><ul class="widgets"><?php foreach ($widgets as $widget) { ?>{%<?php echo $widget; ?>%}<?php } ?></ul><?php } ?>
-                <div class="clear"></div>
-            </div>
+    <div class="container">
+        <section id="maincontent">
+            <section id="content">
+                <div class="grid_12">
+                    <?php echo $message; ?>
+                    <div class="clear"></div>
+                    <?php if($widgets) { ?><ul class="widgets"><?php foreach ($widgets as $widget) { ?>{%<?php echo $widget; ?>%}<?php } ?></ul><?php } ?>
+                    <div class="clear"></div>
+                </div>
+            </section>
         </section>
-    </section>
+    </div>
     
     <div class="clear"></div>
     
-    <div class="container_16">
+    <div class="container">
         <footer id="footer">
-            <div class="grid_16"><p><?php echo $text_powered_by; ?></p></div>
+            <div class="grid_12"><p><?php echo $text_powered_by; ?></p></div>
         </footer>
     </div>
     

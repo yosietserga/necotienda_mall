@@ -39,8 +39,8 @@ class ControllerAccountAccount extends Controller {
         
 		$this->children[] = 'common/nav';
 		$this->children[] = 'account/column_left';
-		$this->children[] = 'account/footer';
-		$this->children[] = 'account/header';
+		$this->children[] = 'common/footer';
+		$this->children[] = 'common/header';
 
 		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));		
   	}

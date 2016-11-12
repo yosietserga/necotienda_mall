@@ -1,0 +1,4 @@
+@charset "utf-8";
+#content {float:left}
+#column_left {margin-right:5px !important;float:left}
+#column_right {float:right}

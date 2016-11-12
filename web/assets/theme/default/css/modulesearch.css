@@ -1,12 +1,13 @@
 .searchWidget .content {
     margin:0px;
     padding:6px 1% 2px 1%;
-    background:#2781D5;
+    background:#186ADF;
     width:98%;
     float:left;
 }
 .searchWidget input {
     margin:0px 5px;
+    width:400px;
     height:21px;
     float:left;
 }
@@ -17,7 +18,8 @@
 }
 .searchWidget a {
     margin-top:0px;
-    background:#333;
+    background:#FDC401;
+    color:#000;
 }
 /* aside */
 .aside .searchWidget .content {
@@ -30,4 +32,14 @@
 }
 .aside .searchWidget a {
     margin-top:5px;
+}
+@media only screen and (max-width: 720px) {
+    .searchWidget select {
+        display:none;
+        opacity: 0;
+        visibility:hidden;
+    }
+    .searchWidget input {
+        width:70%;
+    }
 }

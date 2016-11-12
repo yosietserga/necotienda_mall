@@ -49,4 +49,53 @@ class ModelContentBanner extends Model {
         AND bid.language_id = '". (int)$this->config->get('config_language_id') ."'");
 		return $query->rows;
 	}
+    /**
+     * ModelContentPage::getProperty()
+     * 
+     * Obtener una propiedad de la pagina
+     * 
+     * @param int $id post_id
+     * @param varchar $group
+     * @param varchar $key
+     * @return mixed value of property
+     * */
+    public function getProperty($id, $group, $key) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "post_property 
+        WHERE `post_id` = '" . (int)$id . "' 
+        AND `group` = '". $this->db->escape($group) ."'
+        AND `key` = '". $this->db->escape($key) ."'");
+  
+		return unserialize(str_replace("\'","'",$query->row['value']));
+	}
+    
+    /**
+     * ModelContentPage::getAllProperties()
+     * 
+     * Obtiene todas las propiedades de la pagina
+     * 
+     * Si quiere obtener todos los grupos de propiedades
+     * utilice * como nombre del grupo, ejemplo:
+     * 
+     * $properties = getAllProperties($post_id, '*');
+     * 
+     * Sino coloque el nombre del grupo de las propiedades
+     * 
+     * $properties = getAllProperties($post_id, 'NombreDelGrupo');
+     * 
+     * @param int $id post_id
+     * @param varchar $group
+     * @return array all properties
+     * */
+	public function getAllProperties($id, $group='*') {
+        if ($group=='*') {
+    		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "post_property 
+            WHERE `post_id` = '" . (int)$id . "'");
+        } else {
+    		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "post_property 
+            WHERE `post_id` = '" . (int)$id . "' 
+            AND `group` = '". $this->db->escape($group) ."'");
+        }
+        
+		return $query->rows;
+	}
 }

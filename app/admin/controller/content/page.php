@@ -644,6 +644,7 @@ class ControllerContentPage extends Controller {
                     height:600
                 });
                 editor". $language["language_id"] .".products = '". $json['products'] ."';
+                editor". $language["language_id"] .".config.contentsCss = '/assets/theme/". ($this->config->get('config_template') ? $this->config->get('config_template') : 'choroni') ."/css/theme.css';
                 
                 $('#description_". $language["language_id"] ."_title').change(function(e){
                     $.getJSON('". Url::createAdminUrl('common/home/slug') ."',
@@ -783,7 +784,7 @@ class ControllerContentPage extends Controller {
     
     /**
      * ControllerContentPage::sortable()
-     * ordenar el listado actualizando la posición de cada objeto
+     * ordenar el listado actualizando la posiciï¿½n de cada objeto
      * @return boolean
      * */
      public function sortable() {

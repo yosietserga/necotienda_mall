@@ -1,6 +1,12 @@
 <?php echo $header; ?>
 <aside id="featured"></aside>
 <section id="maincontent">
+        <div class="grid_12">
+            <div id="featuredContent">
+            <?php if($featuredWidgets) { ?><ul class="widgets"><?php foreach ($featuredWidgets as $widget) { ?>{%<?php echo $widget; ?>%}<?php } ?></ul><?php } ?>
+            </div>
+        </div>
+            
     <div class="container_24">
         <section>
         

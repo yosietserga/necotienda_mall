@@ -1,7 +1,6 @@
 <?php
 define('CATALOG', 'shop');
-define('PROFILE', 'profile');
-define('ADMIN', 'admin');
+define('ADMIN', 'necopc');
 define('STORE_ID', 0);
 
 $publictPath    = dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "web" . DIRECTORY_SEPARATOR;
@@ -11,7 +10,6 @@ $mainPath       = dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEP
 $protocol       = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === false ? 'http://' : 'https://';
 $httpDefaultPath= isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] : substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],"/")+1);
 $httpPath = str_replace('/index.php',"",$httpDefaultPath);
-$httpPath = str_replace('/web/',"",$httpPath);
 
  // HTTP addresses
 define('HTTP_HOME',     "http://" . $httpPath . "/");
@@ -25,13 +23,6 @@ define('HTTP_THEME_CSS', HTTP_HOME . "assets/theme/%theme%/css/");
 define('HTTP_THEME_JS', HTTP_HOME . "assets/theme/%theme%/js/");
 define('HTTP_THEME_IMAGE', HTTP_HOME . "assets/theme/%theme%/images/");
 define('HTTP_THEME_FONT', HTTP_HOME . "assets/theme/%theme%/fonts/");
-
-// HTTP Profile
-define('HTTP_PROFILE',     "http://" . $httpPath . "/". PROFILE ."/");
-define('HTTP_PROFILE_IMAGE',    HTTP_HOME . "assets/profile/images/");
-define('HTTP_PROFILE_CSS',      HTTP_HOME . "assets/profile/css/");
-define('HTTP_PROFILE_JS',       HTTP_HOME . "assets/profile/js/");
-define('HTTP_PROFILE_FONTS',       HTTP_HOME . "assets/profile/fonts/");
 
  // HTTPS addresses
 define('HTTPS_HOME',     "https://" . $httpPath . "/");

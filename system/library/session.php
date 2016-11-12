@@ -1,39 +1,42 @@
 <?php
+
 final class Session {
-	public $data = array();
-			
-  	public function __construct() {		
-		if (!session_id()) {
-            header("Set-Cookie: cookiename=cookievalue; expires=Tue, 06-Jan-". (date('Y')+1) ." 23:39:49 GMT; path=/; domain=".substr($_SERVER['SERVER_NAME'], strpos($_SERVER['SERVER_NAME'],"."), 100));
-			ini_set('session.use_cookies', 'On');
-			ini_set('session.use_trans_sid', 'Off');
-            ini_set('session.cookie_domain', substr($_SERVER['SERVER_NAME'], strpos($_SERVER['SERVER_NAME'],"."), 100));
-			session_set_cookie_params(0, '/', substr($_SERVER['SERVER_NAME'], strpos($_SERVER['SERVER_NAME'],"."), 100), false, false);
-			session_start();
-		}
-        
-		$this->data =& $_SESSION;
-	}
-    
+
+    public $data = array();
+
+    public function __construct() {
+        if (!session_id()) {
+            header("Set-Cookie: necotienda=". rand() ."; expires=Tue, 06-Jan-" . (date('Y') + 1) . " 23:39:49 GMT; path=/; domain=" . ltrim(substr($_SERVER['SERVER_NAME'], strpos($_SERVER['SERVER_NAME'], "."), 100),'.'));
+            ini_set('session.use_cookies', 'On');
+            ini_set('session.use_trans_sid', 'Off');
+            ini_set('session.cookie_httponly', 'On');
+            ini_set('session.cookie_domain', ltrim(substr($_SERVER['SERVER_NAME'], strpos($_SERVER['SERVER_NAME'], "."), 100),'.'));
+            session_set_cookie_params(0, '/', ltrim(substr($_SERVER['SERVER_NAME'], strpos($_SERVER['SERVER_NAME'], "."), 100),'.'), false, false);
+            session_start();
+        }
+
+        $this->data =& $_SESSION;
+    }
+
     /**
      * Session::set()
-     * Establece una variable de sesión
+     * Establece una variable de sesiï¿½n
      * @var string $key el nombre de la variable
      * @var mixed $value el valor de la variable
      * @return void
      * */
-    public function set($key,$value) {
-        //TODO: aceptar arrays para asignación de valores en lote
+    public function set($key, $value) {
+        //TODO: aceptar arrays para asignaciï¿½n de valores en lote
         $this->data[C_CODE . "_" . $key] = $value;
     }
-    
+
     /**
      * Session::get()
-     * Obtiene una variable de sesión
+     * Obtiene una variable de sesiï¿½n
      * @var string $key el nombre de la variable
      * @return mixed el valor de la variable
      * */
-    public function get($key,$subkey=false,$skey=false) {
+    public function get($key, $subkey = false, $skey = false) {
         //TODO: obtener variable dentro de una array con N llaves
         if ($skey) {
             return $this->data[C_CODE . "_" . $key][$subkey][$skey];
@@ -43,15 +46,15 @@ final class Session {
             return $this->data[C_CODE . "_" . $key];
         }
     }
-    
+
     /**
      * Session::has()
-     * Verifica si una variable de sesión existe
+     * Verifica si una variable de sesiï¿½n existe
      * @var string $key el nombre de la variable
      * @return boolean
      * */
-    public function has($key,$subkey=false,$skey=false) {
-        //TODO: aceptar arrays para comparación de varias variables
+    public function has($key, $subkey = false, $skey = false) {
+        //TODO: aceptar arrays para comparaciï¿½n de varias variables
         if ($skey) {
             return ((isset($this->data[C_CODE . "_" . $key][$subkey][$skey])) && (!empty($this->data[C_CODE . "_" . $key][$subkey][$skey])));
         } elseif ($subkey) {
@@ -60,14 +63,14 @@ final class Session {
             return ((isset($this->data[C_CODE . "_" . $key]) && (!empty($this->data[C_CODE . "_" . $key]))));
         }
     }
-    
+
     /**
      * Session::clear()
-     * Destruye una variable de sesión, si no se pasa el nombre elimina toda la sesión
+     * Destruye una variable de sesiï¿½n, si no se pasa el nombre elimina toda la sesiï¿½n
      * @var string $key el nombre de la variable
      * @return void
      * */
-    public function clear($key=null,$subkey=false) {
+    public function clear($key = null, $subkey = false) {
         //TODO: aceptar arrays para limpiar lotes de variables
         if (!isset($key)) {
             unset($this->data);
@@ -76,6 +79,6 @@ final class Session {
         } else {
             unset($this->data[C_CODE . "_" . $key]);
         }
-        
     }
+
 }

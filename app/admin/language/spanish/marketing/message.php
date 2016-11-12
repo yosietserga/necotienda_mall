@@ -32,6 +32,7 @@ $_['entry_page_recommended_products']  = 'Mensaje Productos Recomendados:<br><sp
 $_['entry_email_promote_product']  = 'Mensaje Promocionar Productos:<br><span class="help">Este mensaje ser&aacute; enviado a cada contacto del cliente cuando haga click sobre el bot&ooacute;n Promocionar en Google / Outlook.</span>';
 $_['entry_email_invite_friends']  = 'Mensaje Invitar Amigos Recomendados:<br><span class="help">Este mensaje ser&aacute; enviado a cada contacto del cliente cuando haga click en e bot&oacute;n Invitar Amigos.</span>';
 $_['entry_email_payment_instructions']  = 'Mensaje Instrucciones de Pago:<br><span class="help">Este mensaje ser&aacute; enviado cada vez que se haga un pedido.</span>';
+$_['entry_email_seller_new_order']  = 'Aviso de Pedido Nuevo al anunciante:<br><span class="help">Este mensaje ser&aacute; enviado al anunciante cada vez que se haga un pedido.</span>';
 
 // Help
 $_['help_page_new_customer'] = 'Este mensaje ser&aacute; enviado a todos los nuevos clientes que se registren en el sitio web.';
@@ -51,4 +52,5 @@ $_['help_page_recommended_products']  = 'Este mensaje ser&aacute; enviado a cada
 $_['help_email_promote_product']  = 'Este mensaje ser&aacute; enviado a cada contacto del cliente cuando haga click sobre el bot&ooacute;n Promocionar en Google / Outlook.';
 $_['help_email_invite_friends']  = 'Este mensaje ser&aacute; enviado a cada contacto del cliente cuando haga click en e bot&oacute;n Invitar Amigos.';
 $_['help_email_payment_instructions']  = 'Este mensaje ser&aacute; enviado cada vez que se haga un pedido.';
+$_['help_email_seller_new_order']  = 'Este mensaje ser&aacute; enviado al anunciante cada vez que se haga un pedido.';
 

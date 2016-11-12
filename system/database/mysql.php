@@ -4,11 +4,11 @@ final class MySQL {
     
 	public function __construct($hostname, $username, $password, $database) {
 		if (!$this->connection = mysql_connect($hostname, $username, $password)) {
-      		exit('Error: Could not make a database connection using ' . $username . '@' . $hostname);
+      		exit('Sorry, please come back later');
     	}
 
     	if (!mysql_select_db($database, $this->connection)) {
-      		exit('Error: Could not connect to database ' . $database);
+      		exit('Error: Could not connect to database');
     	}
 		
 		mysql_query("SET NAMES 'utf8'", $this->connection);

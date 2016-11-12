@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+html, body {margin-top: 30px !important;}
+#admin-top-menu {
+    position:absolute;
+    top:0px;
+    left:0px;
+    margin:0px;
+    background:#000;
+    height:30px;
+    width:100%;
+    display:block;
+    z-index:990;
+}
+#admin-top-menu * {
+    color:#fff;
+}
+#create ul {
+    position:absolute;
+    top:0px;
+    left:0px;
+    padding: 0px;
+    background:#222;
+    width:200px;
+    display:none;
+    list-style:none;
+    z-index:991;
+}
+#create:hover ul {
+    display:block;
+}
+#create li {
+    width:200px;
+}
+#create a {
+    padding:5px;
+    height:14px;
+    width:190px;
+    display:block;
+}

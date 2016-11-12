@@ -27,6 +27,7 @@ $_['entry_address_1']      = 'Direcci&oacute;n Principal:';
 $_['entry_address_2']      = 'Direcci&oacute;n Alterna:';
 $_['entry_postcode']       = 'C&oacute;digo Postal:';
 $_['entry_city']           = 'Ciudad:';
+$_['entry_birthday']       = 'Fecha de Nacimiento:';
 $_['entry_country']        = 'Pa&iacute;s:';
 $_['entry_zone']           = 'Estado/Provincia/Departamento:';
 $_['entry_newsletter']     = 'Subscribirme:';

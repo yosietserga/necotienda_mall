@@ -29,6 +29,10 @@
     
     <?php if ($css) { ?><style><?php echo $css; ?></style><?php } ?>
     
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
     <?php if (count($styles) > 0) { ?>
         <?php foreach ($styles as $style) { ?>
         <?php if (empty($style['href'])) continue; ?>
@@ -41,138 +45,101 @@
     <script>window.$ || document.write('<script src="<?php echo HTTP_JS; ?>vendor/jquery.min.js"><\/script>')</script>
 </head>
 <body id="mainbody">
-  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-<?php if ($is_admin) { require_once('admin.tpl'); } ?>
-<section id="overheader" class="nt-editable">
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->                        
 
-    <div class="container_16">
-    
-        <div class="grid_8">
-            <ul id="links" class="nt-editable">
-                <li><a href="<?php echo HTTP_HOME; ?>" title="<?php echo $Language->get('text_home'); ?>"><?php echo $Language->get('text_home'); ?></a></li>
-                <li><a href="<?php echo $Url::createUrl('store/special'); ?>" title="<?php echo $Language->get('text_special'); ?>"><?php echo $Language->get('text_special'); ?></a></li>
-                <li><a href="<?php echo $Url::createUrl('checkout/cart'); ?>" title="<?php echo $Language->get('text_cart'); ?>"><?php echo $Language->get('text_cart'); ?></a></li>
-                <li><a href="<?php echo $Url::createUrl('page/sitemap'); ?>" title="<?php echo $Language->get('text_sitemap'); ?>"><?php echo $Language->get('text_sitemap'); ?></a></li>
-                <li><a href="<?php echo $Url::createUrl('page/contact'); ?>" title="<?php echo $Language->get('text_contact'); ?>"><?php echo $Language->get('text_contact'); ?></a></li>
-            </ul>
-        </div>
-        
-        <?php if ($currencies) { ?>
-        <div class="grid_3">
-            <div id="currencies" class="nt-dd1 nt-editable">
-            
-                <p>MONEDA:&nbsp;
-                <?php foreach ($currencies as $currency) { ?>
-                    <?php if ($currency['code'] == $currency_code) { ?>
-                    <b><?php echo $currency['title']; ?>&nbsp;( <?php echo $currency['code']; ?> )</b>
-                    <?php } ?>
-                <?php } ?>
-                    <span>&nbsp;</span>
-                </p>
-                
+<div id="overheader">
+    <div class="container">
+        <div class="grid_7">
+            <div class="links">
                 <ul>
-                <?php foreach ($currencies as $currency) { ?>
-                    <li><a title="<?php echo $currency['title']; ?>" onclick="$('input[name=\'currency_code\']').val('<?php echo $currency['code']; ?>'); $('#currency_form').submit();"><?php echo $currency['title']; ?>&nbsp;( <?php echo $currency['code']; ?> )</a></li>
-                <?php } ?>
+                    <li>
+                        <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Inicio"); ?></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Ofertas"); ?></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Compras Grupales"); ?></a>
+                    </li>
+                    <li class="has_submenu">
+                        <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Red Necoyoad"); ?></a>&nbsp;&nbsp;
+                        <i class="fa fa-caret-down fa-1x"></i>
+                        <ul>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Necoyoad.com"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Webtino.net"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Sergasbass.com"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("ProfesorCarlos.com"); ?></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has_submenu">
+                        <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Selecciona tu pa&iacute;s"); ?></a>&nbsp;&nbsp;
+                        <i class="fa fa-caret-down fa-1x"></i>
+                        <ul>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Argentina"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Chile"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Colombia"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Ecuador"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("México"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Panamá"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Perú"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Uruguay"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Venezuela"); ?></a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
-                
-                <form action="<?php echo str_replace('&', '&amp;', $action); ?>" method="post" enctype="multipart/form-data" id="currency_form">
-                    <input type="hidden" name="currency_code" value="" />
-                    <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
-                </form>
-                
             </div>
         </div>
-        <?php } ?>
         
-        <?php if ($languages) { ?>
-        <div class="grid_3">
-            <div id="languages" class="nt-dd1 nt-editable">
+        <div class="grid_5 push_1" style="text-align:right;left:20px">
+        
+            <?php if ($isLogged) { ?>
+            <b><?php echo $greetings; ?></b>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?php echo $Url::createUrl("profile/profile", array('profile_id'=>$this->customer->getProfile())); ?>" title="<?php echo $Language->get("text_my_account"); ?>"><?php echo $Language->get("text_my_profile"); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?php echo $Url::createUrl("account/account"); ?>" title="<?php echo $Language->get("text_my_account"); ?>"><?php echo $Language->get("text_my_account"); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?php echo $Url::createUrl("account/logout"); ?>" title="<?php echo $Language->get("text_logout"); ?>"><?php echo $Language->get("text_logout"); ?></a>
+            <?php } else { ?>
+            <a href="<?php echo $Url::createUrl("account/register"); ?>" title="<?php echo $Language->get("text_register"); ?>"><?php echo $Language->get("text_register"); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?php echo $Url::createUrl("account/login"); ?>" title="<?php echo $Language->get("text_login"); ?>"><?php echo $Language->get("text_login"); ?></a>
+            <?php } ?>
             
-                <p>IDIOMA:&nbsp;
-                <?php foreach ($languages as $language) { ?>
-                    <?php if ($language['code'] == $language_code) { ?>
-                    <b><img src="<?php echo $language['image']; ?>" alt="<?php echo $language['name']; ?>" />&nbsp;&nbsp;<?php echo $language['name']; ?></b>
-                    <?php } ?>
-                <?php } ?>
-                    <span>&nbsp;</span>
-                </p>
-                
-                <ul>
-                <?php foreach ($languages as $language) { ?>
-                    <li>
-                        <a title="<?php echo $language['name']; ?>" onclick="$('input[name=\'language_code\']').val('<?php echo $language['code']; ?>'); $('#language_form').submit();">
-                            <img src="<?php echo $language['image']; ?>" alt="<?php echo $language['name']; ?>" />&nbsp;&nbsp;
-                            <?php echo $language['name']; ?>
-                        </a>
-                    </li>
-                <?php } ?>
-                </ul>
-                
-                <form action="<?php echo str_replace('&', '&amp;', $action); ?>" method="post" enctype="multipart/form-data" id="language_form">
-                    <input type="hidden" name="language_code" value="" />
-                    <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
-                </form>
-                
-            </div>
+            &nbsp;&nbsp;&nbsp;
+            <a class="button blue" style="float: right;" href="<?php echo $Url::createUrl("sale/create"); ?>" title="<?php echo $Language->get("text_sale"); ?>"><?php echo $Language->get("text_sale"); ?></a>
+            <div class="clear"></div>
+            
         </div>
-        <?php } ?>
         
-        <div class="grid_2">
-            <div id="loginPanel" class="nt-dd1 nt-editable">
-                <p>&nbsp;</p>
-                <ul class="smallSocialLogin">
-                <?php if ($isLogged) { ?>
-                    <li><h2><?php echo $greetings; ?></h2></li>
-                    <li><a href="<?php echo $Url::createUrl("account/account"); ?>" title=""><?php echo $text_account;?></a></li>
-                    <li><a href="<?php echo $Url::createUrl("account/message"); ?>" title=""><?php echo $text_messages;?></a></li>
-                    <li><a href="<?php echo $Url::createUrl("account/logout"); ?>" title=""><?php echo $text_logout;?></a></li>
-                <?php } else { ?>
-                    <li><input type="text" id="loginUsername" name="username" value="" placeholder="Nombre de Usuario" /></li>
-                    <li>
-                        <input type="hidden" id="tokenLogin" name="token" value="<?php echo $token; ?>" />
-                        <input type="password" id="loginPassword" name="password" value="" placeholder="password" />
-                    </li>
-                    <li>
-                        <a class="button" onclick="$(this).hide();$('#loginLoading').show();$.post('<?php echo $Url::createUrl("account/login/header"); ?>',{ email:$('#loginUsername').val(), password:$('#loginPassword').crypt({method:'md5'}), token:$('#tokenLogin').val() }, function(response) { var data = $.parseJSON(response); if (data.error==1) { window.location.href = '<?php echo $Url::createUrl("account/login"); ?>&error=true' } else if (data.success==1) { $('#loginLoading').hide();$(this).show();window.location.reload(); } });" title="<?php echo $text_login;?>"><?php echo $text_login;?></a>
-                        <a class="button" style="display:none" id="loginLoading" title="<?php echo $text_loading;?>"><?php echo $text_loading;?></a>
-                    </li>
-                    <li><a href="<?php echo $Url::createUrl("account/forgotten"); ?>" title="<?php echo $text_forgotten;?>"><?php echo $text_forgotten;?></a></li>
-                    
-                    <?php if ($facebook_app_id) { ?>
-                    <li>
-                        <a class="socialSmallButton facebookButton" href="<?php echo $Url::createUrl("api/facebook",array('redirect'=>'login')); ?>"><?php echo $Language->get('button_login_with_facebook'); ?></a>
-                    </li>
-                    <?php } ?>
-                        
-                    <?php if ($twitter_oauth_token_secret) { ?>
-                    <li>
-                        <a class="socialSmallButton twitterButton" href="<?php echo $Url::createUrl("api/twitter",array('redirect'=>'login')); ?>"><?php echo $Language->get('button_login_with_twitter'); ?></a>
-                    </li>
-                    <?php } ?>
-                        
-                    <?php if ($google_client_id) { ?>
-                    <li>
-                        <a class="socialSmallButton googleButton" href="<?php echo $Url::createUrl("api/google",array('redirect'=>'login')); ?>"><?php echo $Language->get('button_login_with_google'); ?></a>
-                    </li>
-                    <?php } ?>
-                        
-                    <?php if ($live_client_id) { ?>
-                    <li>
-                        <a class="socialSmallButton liveButton" href="<?php echo $Url::createUrl("api/live",array('redirect'=>'login')); ?>"><?php echo $Language->get('button_login_with_live'); ?></a>
-                    </li>
-                    <?php } ?>
-                        
-                <?php } ?>
-                </ul>
-            </div>
-        </div>
     </div>
-</section>
+</div>
 
-<div class="container_16">
+<div class="container">
     <header id="header" class="nt-editable">
-        <div class="grid_5">
+        <div class="grid_3">
             <div id="logo" class="nt-editable">
                 <?php if ($logo) { ?>
                     <a title="<?php echo $store; ?>" href="<?php echo $Url::createUrl("common/home"); ?>"><img src="<?php echo $logo; ?>" title="<?php echo $store; ?>" alt="<?php echo $store; ?>" /></a>
@@ -182,54 +149,31 @@
             </div>
         </div>
         
-        <div class="grid_10" style="text-align:right;">
-        
-            <?php if ($isLogged) { ?>
-            <b><?php echo $greetings; ?></b>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?php echo $Url::createUrl("account/account"); ?>" title="<?php echo $Language->get("text_my_account"); ?>"><?php echo $Language->get("text_my_account"); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?php echo $Url::createUrl("account/logout"); ?>" title="<?php echo $Language->get("text_logout"); ?>"><?php echo $Language->get("text_logout"); ?></a>
-            <?php } else { ?>
-            <a href="<?php echo $Url::createUrl("account/register"); ?>" title="<?php echo $Language->get("text_register"); ?>"><?php echo $Language->get("text_register"); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?php echo $Url::createUrl("account/login"); ?>" title="<?php echo $Language->get("text_login"); ?>"><?php echo $Language->get("text_login"); ?></a>
-            <?php } ?>
-            
-            <div class="clear"></div>
-            <a class="button" style="float: right;" href="<?php echo $Url::createUrl("sale/create"); ?>" title="<?php echo $Language->get("text_sale"); ?>"><?php echo $Language->get("text_sale"); ?></a>
-            <div class="clear"></div>
-            
-            <div id="accountPanel" class="nt-dd1 nt-editable">
-                <p><?php echo $text_my_account; ?>&nbsp;&nbsp;<b>&nbsp;</b></p>
-                <ul>
-                    <li><a href="<?php echo $Url::createUrl("account/activities"); ?>" title="<?php echo $text_my_actitivties;?>"><?php echo $text_my_actitivties;?></a></li>
-                    <li><a href="<?php echo $Url::createUrl("account/lists"); ?>" title="<?php echo $text_my_lists;?>"><?php echo $text_my_lists;?></a></li>
-                    <li><a href="<?php echo $Url::createUrl("account/order"); ?>" title="<?php echo $text_my_orders;?>"><?php echo $text_my_orders;?></a></li>
-                    <li><a href="<?php echo $Url::createUrl("account/payment"); ?>" title="<?php echo $text_payments;?>"><?php echo $text_payments;?></a></li>
-                    <li><a href="<?php echo $Url::createUrl("account/balance"); ?>" title="<?php echo $text_credits;?>"><?php echo $text_credits;?></a></li>
-                    <li><a href="<?php echo $Url::createUrl("account/review"); ?>" title="<?php echo $text_my_reviews;?>"><?php echo $text_my_reviews;?></a></li>
-                    <li><a href="<?php echo $Url::createUrl("account/address"); ?>" title="<?php echo $text_my_addresses;?>"><?php echo $text_my_addresses;?></a></li>
-                    <li><a href="#" title="<?php echo $text_compare;?>"><?php echo $text_compare;?></a></li>
-                </ul>
+        <div class="grid_9" style="text-align:right;float:right;">
+            <div class="grid_3 push_6">
+                <i class="fa fa-exchange"></i>&nbsp;&nbsp;
+                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Productos a Comparar"); ?> (<?php echo (int)$compare; ?>)</a>
+            </div>
+            <div class="grid_2 push_6">
+                <i class="fa fa-heart"></i>&nbsp;&nbsp;
+                <a href="<?php echo $Url::createUrl(""); ?>"><?php echo $Language->get("Favoritos"); ?> (<?php echo (int)$whishlist; ?>)</a>
             </div>
         
-            <div id="cartPanel" class="nt-dd1 nt-editable">
-                <p><?php echo $text_cart; ?>&nbsp;&nbsp;<b>&nbsp;</b></p>
-                <ul>
-                    <?php if ($cartHasProducts) { ?>
-                    <li><h2>Productos</h2></li>
-                    <li>
-                        <img src="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" />
-                        <a href="<?php echo $product['href']; ?>" title="<?php echo $product['name'];?>"><?php echo $product['name'];?><div><?php echo $product['model'];?></div></a>
-                        <div><?php echo $product['qty'];?></div>
-                        <?php if ($display_prices) { ?>
-                        <div><?php echo $product['price'];?></div>
-                        <?php } ?>
-                    </li>
-                    <?php } else { ?>
-                    <li>No ha agregado productos al carrito</li>
-                    <?php } ?>
-                </ul>
+            <div class="clear"></div>
+            
+            <div class="grid_3 push_8" style="left:650px;">
+                <div class="cartHeader">
+                    <div class="grid_3">
+                        <i class="fa fa-shopping-cart fa-3x"></i>
+                    </div>
+                    <div class="grid_7">
+                        <span>
+                            <b><?php echo (int)$compare; ?> Items</b>
+                            $299.87
+                        </span>
+                    </div>
+                </div>
             </div>
-
         </div>
     </header>
 </div>

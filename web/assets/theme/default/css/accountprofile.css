@@ -1,0 +1,27 @@
+/** Account Profile **/
+#product_images li, div.imageWrapper {
+    position: relative;
+    margin: 10px 5px;
+    background:url(../images/no_image.jpg) #fff left top no-repeat;
+    overflow: hidden;
+    width:100px !important;
+    height:100px !important;
+    border:dashed 1px #666 !important;
+    list-style:none;
+    float:left;
+    cursor:pointer;
+}
+input.image {
+    position: absolute;
+    top:0px;
+    right: 0px;
+    margin: 0px;
+    padding:50px 0px !important;
+    opacity:0;
+    cursor:pointer;
+}
+textarea {
+    width:95% !important;
+    height:200px !important;
+}
+/** /Account Profile **/

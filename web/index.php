@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 define('PACKAGE','mall');
-define('VERSION','1.0.2');
+define('VERSION','2.0.2');
 
 $matches = array();
 $config_path = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
@@ -28,7 +28,7 @@ if (!file_exists($config_path . 'cconfig.php')) {
     }
 }
 
-if (!$matches[1]) preg_match('/([^.]+)\.necoshop\.com/', $_SERVER['SERVER_NAME'], $matches);
+if (!$matches[1]) preg_match('/([^.]+)\.necotienda\.com/', $_SERVER['SERVER_NAME'], $matches);
 if(isset($matches[1]) && $matches[1] != 'www') {
     if (file_exists($config_path ."app/". strtolower($matches[1]) ."/config.php")) {
         require_once($config_path . "app/". strtolower($matches[1]) ."/config.php");
@@ -77,6 +77,7 @@ if (!$session->has('ntConfig_'.(int)STORE_ID)) {
 }
 $config->set('config_store_id',STORE_ID);
 
+
 $response->addHeader('Content-Type: text/html; charset=utf-8');
 
 // Language Detection
@@ -113,6 +114,8 @@ if (isset($request->server['HTTP_ACCEPT_LANGUAGE']) && ($request->server['HTTP_A
 
 if (isset($_GET['language']) && array_key_exists($_GET['language'], $languages)) {
 	$code = $_GET['language'];
+} elseif (isset($_GET['hl']) && array_key_exists($_GET['hl'], $languages)) {
+	$code = $_GET['hl'];
 } elseif ($session->has('language') && array_key_exists($session->get('language'), $languages)) {
 	$code = $session->get('language');
 } elseif (isset($request->cookie[C_CODE."_".'language']) && array_key_exists($request->cookie[C_CODE."_".'language'], $languages)) {
@@ -142,9 +145,10 @@ $language->load($languages[$code]['filename']);
 $log = new Log($config->get('config_error_filename'));
 $registry->set('log', $log);
 
+$_SESSION['necotimestart'] = microtime(true);
 function error_handler($errno, $errstr, $errfile, $errline) {
 	global $log, $config;
-	
+
 	switch ($errno) {
 		case E_NOTICE:
 		case E_USER_NOTICE:
@@ -162,24 +166,52 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 			$error = 'Unknown';
 			break;
 	}
-		
-    echo '<b>' . $error . '</b>: ' . $errstr . ' in <b>' . $errfile . '</b> on line <b>' . $errline . '</b></br >';
-    $log->write('PHP ' . $error . ':  ' . $errstr . ' in ' . $errfile . ' on line ' . $errline);
+
+	//echo '<b>' . $error . '</b>: ' . $errstr . ' in <b>' . $errfile . '</b> on line <b>' . $errline . '</b></br >';
+	neco_logger($error . ': ' . $errstr . ' in ' . $errfile . ' on line ' . $errline);
+	//$log->write('PHP ' . $error . ':  ' . $errstr . ' in ' . $errfile . ' on line ' . $errline);
 	return true;
 }
+
+function neco_logger($text) {
+	if (!file_exists(dirname(__FILE__) .'/php_error_log.txt')) {
+		$f = fopen (dirname(__FILE__) .'/php_error_log.txt', 'w+');
+	} else {
+		$fc = file_get_contents(dirname(__FILE__) .'/php_error_log.txt');
+	}
+
+	$time_start = $_SESSION['necotimestart'];
+	$time_end = microtime(true);
+	$ft = $text . " - IP {$_SERVER['REMOTE_ADDR']} - ". ($time_end - $time_start) . "seg - ". (memory_get_peak_usage(true)/1024/1024) ."MB\n";
+	$_SESSION['necotimestart'] = $time_end;
+
+	//$ft .=  implode(" included\n", get_included_files());
+
+	if ($f) {
+		fwrite($f, $ft);
+		fclose($f);
+	} else {
+		$f = fopen (dirname(__FILE__) .'/php_error_log.txt', 'w+');
+		$fc .= $ft;
+		fwrite($f, $fc);
+		fclose($f);
+	}
+}
+
 	
 // Error Handler
-//set_error_handler('error_handler');
+set_error_handler('error_handler');
 
 // App Libs and Configs Preload
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'app/shop/map.php');
+$session->set("config", serialize($config));
 
 // Template Preview
 if (!empty($_GET['template']) && file_exists(DIR_TEMPLATE . $_GET['template'] . '/common/header.tpl')) {
     $config->set('config_template',$_GET['template']);
 }
 
-$session->set('ntConfig_'.STORE_ID, serialize($config));
+$session->set('ntconfig', serialize($config));
 
 // Front Controller 
 $controller = new Front($registry);

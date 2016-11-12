@@ -3,6 +3,20 @@ $(function(){
             $(this).hoverdir(); 
     });
     $('img.nt-lazyload').lazyload();
+    
+    if (!$('link[href="/assets/theme/default/css/vendor/jquery.growl.css"]').length) {
+        $(document.createElement('link')).attr({
+            href:"/assets/theme/default/css/vendor/jquery.growl.css",
+            rel:'stylesheet'
+        }).appendTo('head');
+    }
+    
+    if (!$.fn.growl) {
+        $(document.createElement('script')).attr({
+            src:"/assets/js/vendor/stickybox/jquery.growl.js",
+            type:'text/javascript'
+        }).appendTo('#jsWrapper');
+    }    
 });
 function getUrlVars() {
     var vars = {};
@@ -10,6 +24,199 @@ function getUrlVars() {
         vars[key] = value;
     });
     return vars;
+}
+
+function quickView(o, id) {
+    if (!$("link[href='/assets/css/fancybox/jquery.fancybox.css']").length) {
+        $(document.createElement('link')).attr({
+            href:'/assets/css/fancybox/jquery.fancybox.css',
+            rel:'stylesheet',
+            media:'screen'
+        }).appendTo('head');
+    }
+    if (!$.fn.fancybox) {
+        $(document.createElement('script')).attr({
+            src:'/assets/js/vendor/fancybox/jquery.fancybox.pack.js'
+        }).appendTo('body');
+    }
+    if (!$("link[href='/assets/theme/choroni/css/etalage.css']").length) {
+        $(document.createElement('link')).attr({
+            href:'/assets/theme/default/css/etalage.css',
+            rel:'stylesheet',
+            media:'screen'
+        }).appendTo('head');
+    }
+    if (!$.fn.etalage) {
+        $(document.createElement('script')).attr({
+            src:'/assets/js/vendor/jquery.etalage.js'
+        }).appendTo('body');
+    }
+    if (typeof o !== 'undefined') {
+        if (o == 'product' && !isNaN(id)) {
+            $.getJSON('index.php?r=store/product/quickviewjson',
+            {
+                product_id:id
+            })
+            .then(function(data){
+                if (!data.error) {
+                    $('#tempP').remove();
+                    divWrapper = $(document.createElement('div')).attr({
+                        id:'tempP',
+                        class:'fancybox'
+                    })
+                    .css({
+                        display:'none'
+                    })
+                    .appendTo('body');
+
+                    tpl = '<div style="min-width:740px">';
+
+                    /** Images **/
+                    tpl += '<div class="grid_7">';
+                    tpl += '<div class="nt-editable" id="qw_images">';
+                    tpl += '<div id="qw_popup">';
+                    tpl += '<ul class="nt-editable" id="qw_productImages">';
+                    $.each(data.images, function(i, item) {
+                        tpl += '<li>';
+                        tpl += '<img class="etalage_thumb_image" src="'+ item.preview +'" alt="'+ data.productInfo.name +'" />';
+                        tpl += '<img class="etalage_source_image" src="'+ item.popup +'" alt="'+ data.productInfo.name +'" />';
+                        tpl += '</li>';
+                    });
+                    tpl += '</ul>';
+                    tpl += '</div>';
+                    tpl += '</div>';
+                    tpl += '</div>';
+                    /** /Images **/
+                
+                    tpl += '<div class="grid_5">';
+                    tpl += '<a href="'+ data.href +'" style="text-decoration:none;"><h1 class="nt-editable" id="productName">'+ data.productInfo.name +'</h1></a>';
+                    tpl += '<div class="clear"></div><br />';
+                    tpl += '<div class="property model nt-editable" id="productModel">'+ data.productInfo.model +'</div>';
+                    tpl += '<div class="clear"></div>';
+
+                    if (data.average) {
+                        tpl += '<div class="property average nt-editable" id="productAverage">';
+                        tpl += '<img src="/assets/images/stars_'+ data.average +'.png" alt="'+ data.average +' Estrellas" />';
+                        tpl += '</div>';
+                        tpl += '<div class="clear"></div>';
+                    }
+
+                    
+                    if (data.sticker) {
+                        tpl += data.sticker;
+                        tpl += '<div class="clear"></div>';
+                    }
+
+                    if (data.display_price) {
+                        if (!data.special) {
+                            tpl += '<p class="price nt-editable" id="productPrice">'+ data.price +'</p>';
+                        } else {
+                            tpl += '<p class="new_price nt-editable" id="productNewPrice">'+ data.special +'</p>';
+                            tpl += '<p class="old_price nt-editable" id="productOldPrice">'+ data.price +'</p>';
+                        }
+                        tpl += '<div class="clear"></div>';
+                    }
+                    
+                    if (data.productInfo.meta_description.length > 1) {
+                        tpl += '<div class="clear"></div><br />';
+                        tpl += '<div class="property overview nt-editable" id="productOverview">';
+                        tpl += '<p>'+ data.productInfo.meta_description +'</p>';
+                        tpl += '</div>';
+                        tpl += '<div class="clear"></div><br />';
+                    }
+
+                    tpl += '<div class="property availability nt-editable" id="productAvailability">';
+                    tpl += '<p><b>Disponibilidad:</b>&nbsp;'+ data.stock +'</p>';
+                    tpl += '</div>';
+
+                    tpl += '<div class="clear"></div><hr /><br />';
+                    tpl += '<form action="/carrito?product_id='+ data.product_id +'" method="post" enctype="multipart/form-data" id="productForm">';
+                    
+                    if (data.discounts) {
+                        tpl += '<div class="property discount nt-editable" id="productDiscount">';
+                        tpl += '<p><b>Descuento</b></p>';
+                        tpl += '<table>';
+                        tpl += '<tr>';
+                        tpl += '<th>Cant. Min.</th>';
+                        tpl += '<th>Precio</th>';
+                        tpl += '</tr>';
+                        $.each(data.discounts, function(i,item) {
+                            tpl += '<tr>';
+                            tpl += '<td>'+ item.quantity +'</td>';
+                            tpl += '<td>'+ item.price +'</td>';
+                            tpl += '</tr>';
+                        });
+                        tpl += '</table>';
+                        tpl += '</div>';
+                        tpl += '<div class="clear"></div><hr /><br />';
+                    }
+
+                    tpl += '<div class="property quantity nt-editable" id="productQty">';
+                    tpl += '<input type="hidden" name="product_id" value="'+ data.product_id +'" />';
+                    tpl += '<input type="text" id="quantity" name="quantity" size="3" placeholder="Cantidad" style="width: 50px !important" value="'+ data.minimum +'" />';
+                    
+                    if (data.minimum > 1) {
+                        tpl += '<br /><small>Compra M&iacute;nima '+ data.minimum +'</small>';
+                    }
+
+                    tpl += '<a class="arrow-down" onclick="if ($(\'#quantity\').val() > 1) $(\'#quantity\').val( $(\'#quantity\').val() - 1 )" style="margin-top: 29px;margin-left:20px;padding:2px 6px;background:#eee;border:solid 1px #ddd;font:normal 18px Verdana, sans-serif;text-decoration:none;">-</a>';
+                    tpl += '<a class="arrow-up"  onclick="$(\'#quantity\').val( $(\'#quantity\').val() * 1 + 1 )" style="margin-top: 29px;margin-left:20px;padding:2px 5px;background:#eee;border:solid 1px #ddd;font:normal 18px Verdana, sans-serif;text-decoration:none;">+</a>';
+                    tpl += '<div class="clear"></div><br /><br />';
+                    tpl += '<a class="button_add_small" style="text-align:center" onclick="$(\'#productForm\').submit();" id="add_to_cart">';
+                    tpl += '<i class="fa fa-shopping-cart fa-2x"></i>';
+                    tpl += '&nbsp;&nbsp;'+ data.button_add_to_cart;
+                    tpl += '</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+                    tpl += '<a class="button_see_small" style="text-align:center" href="'+ data.href +'">';
+                    tpl += '<i class="fa fa-rocket fa-2x"></i>';
+                    tpl += '&nbsp;'+ data.button_see_product;
+                    tpl += '</a>';
+                    tpl += '</div>';
+                    tpl += '<input type="hidden" name="product_id" value="'+ data.productInfo.product_id +'" />';
+                    tpl += '</form>';
+                    tpl += '<div class="clear"></div><br /><br />';
+
+                    if (data.google_client_id) {
+                        tpl += '<a class="socialSmallButton googleButton" href="index.php?r=api/google&redirect=promoteproduct&product_id='+ data.productInfo.product_id +'">Promocionar en Google</a>';
+                    }
+
+                    if (data.live_client_id) {
+                        tpl += '<a class="socialSmallButton liveButton" href="index.php?r=api/live&redirect=promoteproduct&product_id='+ data.productInfo.product_id +'">Promocionar en Hotmail</a>';
+                    }
+
+                    if (data.facebook_app_id) {
+                        tpl += '<a class="socialSmallButton liveButton" href="index.php?r=api/facebook&redirect=promoteproduct&product_id='+ data.productInfo.product_id +'">Promocionar en Facebook</a>';
+                    }
+
+                    if (data.twitter_oauth_token_secret) {
+                        tpl += '<a class="socialSmallButton liveButton" href="index.php?r=api/twitter&redirect=promoteproduct&product_id='+ data.productInfo.product_id +'">Promocionar en Twitter</a>';
+                    }
+
+                    tpl += '</div>';
+                    tpl += '</div>';
+                    
+                    $(divWrapper).html(tpl);
+                    
+                    $('#qw_productImages').etalage({
+                        thumb_image_width: 350,
+			thumb_image_height: 350,
+			zoom_area_width: 600,
+			source_image_width: 550,
+			source_image_height: 550
+                    });
+
+                    $('.fancybox').fancybox({
+                        autoWidth: true,
+                        minHeight:520
+                    });
+                    $('#tempP').trigger('click').on('click', function(e){
+                        e.preventDefault();
+                        return false;
+                    });
+                }
+            });
+        }
+    }
+    return false;
 }
 
 if(!(window.console&&console.log)){(function(){var noop=function(){};var methods=['assert','clear','count','debug','dir','dirxml','error','exception','group','groupCollapsed','groupEnd','info','log','markTimeline','profile','profileEnd','markTimeline','table','time','timeEnd','timeStamp','trace','warn'];var length=methods.length;var console=window.console={};while(length--){console[methods[length]]=noop;}}());}

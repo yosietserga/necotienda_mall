@@ -97,8 +97,8 @@ class ControllerAccountPayment extends Controller {
         
 		$this->children[] = 'common/nav';
 		$this->children[] = 'account/column_left';
-		$this->children[] = 'account/footer';
-		$this->children[] = 'account/header';
+		$this->children[] = 'common/footer';
+		$this->children[] = 'common/header';
         
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/account/payment.tpl')) {
 			$this->template = $this->config->get('config_template') . '/account/payment.tpl';
@@ -163,8 +163,8 @@ class ControllerAccountPayment extends Controller {
         
 		$this->children[] = 'common/nav';
 		$this->children[] = 'account/column_left';
-		$this->children[] = 'account/footer';
-		$this->children[] = 'account/header';
+		$this->children[] = 'common/footer';
+		$this->children[] = 'common/header';
         
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/account/payment_receipt.tpl')) {
 			$this->template = $this->config->get('config_template') . '/account/payment_receipt.tpl';
@@ -206,8 +206,8 @@ class ControllerAccountPayment extends Controller {
 		
 		$this->children[] = 'common/nav';
 		$this->children[] = 'account/column_left';
-		$this->children[] = 'account/footer';
-		$this->children[] = 'account/header';
+		$this->children[] = 'common/footer';
+		$this->children[] = 'common/header';
     	foreach ($method_data as $key => $value) {
             $this->children[$key] = 'payment/'.$key;
     	}

@@ -83,7 +83,7 @@
             
             <div class="clear"></div>
             
-            <h3 style="padding:10px;background: #84A150;border: solid 1px ; color:#fff;">Selector: <span id="el" style="font-weight: bold;"></span></h3>
+            <h3 style="padding:10px;background: #84A150;border: solid 1px ;#376300; color:#fff;">Selector: <span id="el" style="font-weight: bold;"></span></h3>
             <div class="clear"></div>
             
             <div class="panelWrapper">

@@ -4,6 +4,7 @@ $_['heading_title']   = 'Carrito de Compra';
 
 // Text
 $_['text_basket']     = 'Carrito';
+$_['text_new_order']  = 'Pedido Nuevo';
 $_['text_sub_total']  = '<b>Sub-Total:</b>';
 $_['text_error']      = 'Su carrito est&aacute; vac&iacute;o!';
 $_['text_success']    = 'Su cup&oacute;n de descuento se ha aplicado con &eacute;xito!';

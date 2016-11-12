@@ -15,6 +15,7 @@ $_['text_messages']     = 'Mensajes';
 $_['text_payments']     = 'Pagos';
 $_['text_credits']      = 'Saldos';
 $_['text_my_account']   = 'Mi Cuenta';
+$_['text_my_profile']   = 'Mi Perfil';
 $_['text_my_addresses'] = 'Mis Direcciones';
 $_['text_my_orders']    = 'Mis Pedidos';
 $_['text_my_reviews']   = 'Mis Comentarios';

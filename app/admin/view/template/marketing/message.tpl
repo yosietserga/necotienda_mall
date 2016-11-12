@@ -12,6 +12,17 @@
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <table class="form">
             <tr>
+                <td><?php echo $Language->get('entry_email_seller_new_order'); ?></td>
+                <td>
+                    <select name="marketing_email_seller_new_order" title="<?php echo $Language->get('help_email_seller_new_order'); ?>">
+                        <option value="0"><?php echo $Language->get('text_none'); ?></option>
+                        <?php foreach ($newsletters as $newsletter) { ?>
+                        <option value="<?php echo $newsletter['newsletter_id']; ?>"<?php if ($newsletter['newsletter_id'] == $marketing_email_seller_new_order) { ?> selected="selected"<?php } ?>><?php echo $newsletter['name']; ?></option>
+                        <?php } ?>
+                  </select>
+                </td>
+            </tr>
+            <tr>
                 <td><?php echo $Language->get('entry_page_new_customer'); ?></td>
                 <td>
                     <select name="marketing_email_new_customer" title="<?php echo $Language->get('help_page_new_customer'); ?>">
@@ -183,6 +194,17 @@
                         <option value="0"><?php echo $Language->get('text_none'); ?></option>
                         <?php foreach ($newsletters as $newsletter) { ?>
                         <option value="<?php echo $newsletter['newsletter_id']; ?>"<?php if ($newsletter['newsletter_id'] == $marketing_email_payment_instructions) { ?> selected="selected"<?php } ?>><?php echo $newsletter['name']; ?></option>
+                        <?php } ?>
+                  </select>
+                </td>
+            </tr>
+            <tr>
+                <td><?php echo $Language->get('entry_customer_added_successfully'); ?></td>
+                <td>
+                    <select name="marketing_customer_added_successfully" title="<?php echo $Language->get('help_customer_added_successfully'); ?>">
+                        <option value="0"><?php echo $Language->get('text_none'); ?></option>
+                        <?php foreach ($newsletters as $newsletter) { ?>
+                        <option value="<?php echo $newsletter['newsletter_id']; ?>"<?php if ($newsletter['newsletter_id'] == $marketing_customer_added_successfully) { ?> selected="selected"<?php } ?>><?php echo $newsletter['name']; ?></option>
                         <?php } ?>
                   </select>
                 </td>

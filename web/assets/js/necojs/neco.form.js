@@ -205,6 +205,7 @@
                             $(this).addClass('neco-input-error').parent().find('.neco-form-error').attr({'title':'Debes rellenar este campo con la informaci\u00F3n correspondiente'});
                         }
                         
+                        /*
                         var pattern = new RegExp(/.["\\\/\{\}\[\]\+']/i);
                         if (pattern.test($(this).val()) && !error && $(this).attr('type') != 'password' && $(this).attr('type') != 'hidden' && $(this).attr('type') != 'date') {
                             error = true;
@@ -214,7 +215,7 @@
                             $(this).addClass('neco-input-error').parent().find('.neco-form-error').attr({'title':'No se permiten ninguno de estos caracteres especiales ["#$&/?\'+}{\u003C\u003E] en este campo'});
                             top = $(this).offset().top;
                         }
-                        
+                        */
                         if ($(this).hasClass('neco-input-error') && !error) {
                             error = true;
                             $("#tempError").remove();

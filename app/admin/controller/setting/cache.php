@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ControllerSettingCache
  * 
@@ -8,8 +9,8 @@
  * @version $Id$
  * @access public
  */
-class ControllerSettingCache extends Controller
-{
+class ControllerSettingCache extends Controller {
+
     private $error = array();
 
     /**
@@ -17,25 +18,25 @@ class ControllerSettingCache extends Controller
      * 
      * @return
      */
-    public function index()
-    {
+    public function index() {
         $this->load->library('url');
         $res = $this->rrmdir(DIR_CACHE);
         $this->load->model('store/store');
         $stores = $this->modelStore->getAll();
+        $this->session->clear('ntConfig_0');
         foreach ($stores as $store) {
-            $this->session->clear('ntConfig_'.(int)$store['store_id']);
+            $this->session->clear('ntConfig_' . (int) $store['store_id']);
         }
-        
+
         $this->session->clear('language');
         $this->session->clear('fkey');
-        
+
         if ($res) {
-            $this->session->set('success','Se han eliminado todos los archivos del cache con &eacute;xito');
+            $this->session->set('success', 'Se han eliminado todos los archivos del cache con &eacute;xito');
         } else {
-            $this->session->set('error','Error: No se pudieron eliminar los archivos del cache');
+            $this->session->set('error', 'Error: No se pudieron eliminar los archivos del cache');
         }
-        
+
         if ($_SERVER['HTTP_REFERER']) {
             $this->redirect($_SERVER['HTTP_REFERER']);
         } elseif ($this->session->has('redirect')) {
@@ -44,7 +45,6 @@ class ControllerSettingCache extends Controller
         } else {
             $this->redirect(Url::createAdminUrl('common/home'));
         }
-
     }
 
     /**
@@ -53,8 +53,7 @@ class ControllerSettingCache extends Controller
      * @param mixed $dir
      * @return
      */
-    protected function rrmdir($dir)
-    {
+    protected function rrmdir($dir) {
         if (is_dir($dir)) {
             $objects = scandir($dir);
             foreach ($objects as $object) {
@@ -71,4 +70,5 @@ class ControllerSettingCache extends Controller
         }
         return false;
     }
+
 }

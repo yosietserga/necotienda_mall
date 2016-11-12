@@ -38,6 +38,7 @@ $_['text_all_zones']        = 'Todas las Zonas';
 $_['text_pagination']       = 'Mostrando {start} a {end} de {total} ({pages} P&aacute;ginas)';
 $_['text_separator']        = ' &gt; ';
 $_['text_bookmark']         = ' Favoritos';
+$_['text_quick_view']       = 'Vista R&aacute;pida';
 // Account Register
 $_['text_account']         = 'Cuenta';
 $_['text_create']          = 'Registrar';

@@ -1,10 +1,5 @@
 <?php
-/**
- * 1. cargar la configuracion
- * 2. cargar las librerías necesarias
- * 3. inicializar las clases necesarias
- * 4. crear cron files para cada tipo de tarea
-*/
+
 echo "Begin cron process\n";
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'app/admin/config_cron.php');
 require_once(DIR_SYSTEM . 'startup.php');
@@ -147,7 +142,7 @@ class Cron {
             
             $limit = "";
             if ($task->type == 'send') {
-                $limit = " LIMIT 2 ";
+                $limit = " LIMIT 5 ";
             }
             
             $qry = $this->db->query("SELECT * 
@@ -187,7 +182,7 @@ class Cron {
     private function initMailer() {
         if ($this->config->get('config_smtp_method')=='smtp') {
             $this->mailer->IsSMTP();
-            $this->mailer->Hostname = $this->config->get('config_smtp_host');
+            $this->mailer->Host = $this->config->get('config_smtp_host');
             $this->mailer->Username = $this->config->get('config_smtp_username');
             $this->mailer->Password = base64_decode($this->config->get('config_smtp_password'));
             $this->mailer->Port     = $this->config->get('config_smtp_port');

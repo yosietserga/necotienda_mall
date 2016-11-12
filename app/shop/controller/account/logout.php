@@ -17,7 +17,7 @@ class ControllerAccountLogout extends Controller {
 			
 			$this->tax->setZone($this->config->get('config_country_id'), $this->config->get('config_zone_id'));
 			
-      		$this->redirect(Url::createUrl("account/logout"));
+      		$this->redirect(Url::createUrl("common/home"));
     	}
  
     	$this->language->load('account/logout');
@@ -61,8 +61,8 @@ class ControllerAccountLogout extends Controller {
     		$this->children[] = 'common/column_left';
     		$this->children[] = 'common/column_right';
     		$this->children[] = 'common/nav';
-    		$this->children[] = 'account/header';
-    		$this->children[] = 'account/footer';
+    		$this->children[] = 'common/header';
+    		$this->children[] = 'common/footer';
             
             $this->load->helper('widgets');
             $widgets = new NecoWidget($this->registry,$this->Route);

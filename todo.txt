@@ -1,0 +1,409 @@
+TODO:
+ADMIN
+	- agregar funciones para compilar y generar o regenerar todas los alias de url
+	- agregar opción de logotipo para los pdf generados
+	
+BUSCAR
+	- agregar prefijo lanigage->get('text_search'); al título
+	- si la cantidad de resultados es igual a 1, no mostrar filtros
+	- si los filtros no hay más de 1 item asociado, no mostrarlo
+	- registrar las búsquedas:
+		- url de la búsqueda
+		- session_id
+		- ip
+	- si session_id coinciden, mostrar las últimas búsquedas realizadas
+	- mostrar un box con los artículos asociados a su última búsqueda order by rand()
+
+NECOMALL
+	VISTA DE LA PUBLICACIÓN
+		SECCIÓN PREGUNTAS
+			SI ES QUIEN PREGUNTÓ
+				- mostrar enlaces para ocultar pregunta con todas sus réplcias
+			SI ES EL ANUNCIANTE
+				- no mostrar formulario para hacer preguntas
+			SI ES UN USUARIO XY
+				- mostrar enlaces para responder, denunciar pregunta, marcar como spam
+				- mostrar enlaces para valorar respuestas
+				- hacer click sobre al autor de la pregunta o respuestas y llevarlo hacia su perfil- mostrar en etiquetas las formas de pagos y envíos aceptados y en los estados donde se ofrece el artículo, al hacer click sobre la etiqueta mostrar el listado para productos similares con la forma de pago, envío o estado.
+		SECCIÓN CONOCE AL VENDEDOR
+				- mostrar todos los datos (nombre de usuario, empresa, página web, email, telléfonos, mapa de google, facebook, twitter, youtube
+				- mostrar enlace para editar la información
+				- mostrar botón para comprar la información del vendedor por Bs. 1,00, al comprarla mostrar toda la información
+				- mostrar los enlaces enviar mensaje, agregar a mis amigos, seguir, subscribirse, visitar tienda
+		BOTÓN COMPRAR
+			- verificar que esté logueado
+			- verificar que tiene permiso para hacer pedidos, es decir se ha autentificado y se ha autorizado
+			- mostrar con fancybox el formulario para hacer un pedido: cantidad, fecha de entrega, forma de pago
+			- registrar pedido
+			- enviar email al anunciante que tiene un nuevo pedido por parte de fulano
+			- enviar comprobante del pedido por email al comprador junto con el email configurado
+		BOTÓN CONTACTAR
+			- verificar que esté logueado
+			- mostrar con fancybox formulario para enviar mensaje interno
+			- notificar por email al anunciante que tiene un mensaje nuevo de parte de fulano
+
+- publicar artículo
+	- al final de todo, enviar email con instrucciones del pago
+	
+- alquilar tienda virtual por un año
+	- crear tienda
+	- llevar a formas de pagos
+	- seleccionar débito y si tiene el saldo, debitar de la cuenta, registrar el pago y activar la tienda
+	
+- comprar notificador: cuando alguien publique un artículo en las categorías seleccionadas, notificarle con los datos del cliente y el artículo
+	- auto debitar de la cuenta, si no tiene el saldo, notificar al cliente que debe acreditar saldo
+	- si tiene saldo, notificar el cobro, enviar datos del anunciante
+	
+
+SALDOS
+	ACREDITAR	
+		- a través del admin, acreditar saldo al cliente
+			- seleccionar al cliente
+			- ingresar el monto a acreditar
+			- ingresar la descripción de la transacción
+			- enviar email al cliente con el comprobante de la acreditación
+				- id
+				- monto acreditado
+				- monto disponible, contable y bloqueado
+				- fecha de la acreditación
+				- enlace hacia su cuenta
+			- registrar en bd
+	DEBITAR
+		- al hacer un pedido, compra, oferta, al hacer cualquier vaina que se tenga que cobrar abrir el enlace del módulo de débito
+		
+	DEVOLVER 
+
+	
+	
+PAGAR
+	- obetner datos del pago por GET o POST
+	- cargar información y formas de pagos activadas y configuradas
+	- mostar páginas asociadas a las formas de pago y al módulo en sí, la página del módulo va a depender de lo que se va a pagar
+		- comprar información
+		- pagar pedido
+		- comprar estadística
+		- comprar servicios de notificación
+	- si es un pedido:
+		- mostrar el id y el total del pedido con el enlace para ver el pedido completo
+	- si es una compra de información de contacto del anunciante:
+		- al momento de hacer click sobre contactar, verificar que no tenga pedidos en espera para lo mismo (para el mismo anunciante)
+		- si no posee pedidos en espera, generar pedidos y redireccionar al pago
+	- si es una compra de estadística de la tienda o la publicación:
+		- al momento de hacer click sobre contactar, verificar que no tenga pedidos en espera para lo mismo (artículo o tienda, mes y año)
+		- si no posee pedidos en espera, generar pedidos y redireccionar al pago
+	- si es una compra de servicio de automatización:
+		- al momento de hacer click sobre contactar, verificar que no tenga pedidos en espera para lo mismo (artículo o tienda, mes y año)
+		- si no posee pedidos en espera, generar pedidos y redireccionar al pago
+		- seleccionar el método de pago:
+			- mostrar página asociada al pago
+			- mostrar formulario
+			- procesar pago:
+				- calcular diferencia y mostrar mensaje en caso de que hag falta dinero o haya vuelto
+				- registrar pago en bd
+				- colocar pago con status configurado
+				- colocar pedido en status
+				- si es transferencia o depósito bancario, colocar pa
+
+	
+Pruebas a realizar:
+	- crear una cuenta
+		- que sea mayor de N edad
+		- mostrar mensaje "Cargando..." luego de hacer click en Aceptar
+	- iniciar sesión
+		- verificar que el usuario no haya tenido intentos de accesos no autorizados (varios intentos fallidos desde un dirección ip desconocida o nueva), en tal caso sugerir cambiar contraseña
+		- registrar el login en una tabla de sesiones para conocer por cliente, cuando ingresó, desde que ip, 
+		- cargar la confiuración personalizada del cliente (configuración de interfaces, preferencias de categorías de productos, carrito de compra, últimas búsquedas, últimos prductos visitados, etc.)
+	- crear publicación
+		- crear el producto
+		- auto generar la información SEO del producto (url alias, meta description, palabras claves, etc.)
+		- sugerir estructuras de plantillas para la publicación (estilo plantillas de mercadolibre), invitar comprar los servicios profesionales de plantillas para los productos
+		- limitar el consumo de memoria al crear el producto para evitar errores del servidor
+		- limpiar todo código que sugiera un ataque o aprovechamiento de vulnerabilidades (xss, xsrf, etc.)
+		- validar el tamaño de las imágenes (resolución mínima y máxima, tamaño del archivo máximo
+		- condicionar los parámetros de las imágenes por la configuración de la aplicación
+			- config_image_max_file_size 	-> calculado en MB
+			- config_image_max_screen_size 	-> calculado en PX
+			- config_image_min_screen_size 	-> calculado en PX
+		- crear un pedido con el monto correspondiente al plan
+		- colocar la publicación en desactivado hasta que se reporte el pago o se debite de la cuenta del cliente
+		- enviar notificación al anunciante que debe realizar el pago correspondiente a través de los métodos de pagos disponibles
+		- notificar a todos los clientes que siguen al anunciante que publicó un nuevo artículo
+		- mostrar el artículo publicado al anunciante indicandole que puede darle exposición y promoción al producto por email invitando a sus amigos al igual que por las redes sociales
+		  para ello, el cliente debe haber configurado sus datos de las redes sociales y de sus cuentas de email para darle permisos a la aplicación, de tal manera que:
+		  - publicar en facebook el artículo
+		  - publicar en twitter el artículo
+		  - publicar en youtube el video subido por anunciante para dicho artículo
+		  - enviar email con la ficha del producto a todos sus contactos de gmail y hotmail
+	- reportar pago de una publicación
+	- reportar pago de una compra
+	- realizar un pedido
+	- promocionar un producto
+	- realizar una pregunta
+	- realizar réplicas
+	- comparar productos
+	- compartir productos
+	- descargar catálogos pdf
+	- descargar producto en pdf
+	- enviar mensaje al anunciante
+	- enviar mensaje al ofertante
+	- enviar mensaje a otros usuarios
+	- seguir a un usuario (lo que publica, lo que compra, lo que comenta, a quien sigue, que producto promociona, que producto compartió)
+	- valorar una publicación (producto), vendedor, comprador, tienda virtual, el sitio web entero
+
+Tareas automatizadas:
+	- enviar mensaje de feliz cumpleaños a los cumpleañeros
+	- notificar a los seguidores de un usuario que pronto cumple año para que le regalen algo de acuerdo a los gustos del cumpleañero
+	- notificar que el usuario tiene un pedido pendiente por pagar
+	- notificar al usuario que tiene un pedido pendiente por concretar (enviar y reportar que recibió el pago)
+	- enviar recomendaciones de productos visitados
+	- recordar a los anunciantes que pueden exponer sus productos promocionandolos a través de gmail y outlook
+	- notificar que la publicación está pronto a vencer
+	- enviar mensaje de estimulación para que compartan los contenidos en las redes sociales
+	- recordar transacciones pendientes (pagos, pedidos, envíos de mercancías, etc.)
+	- veirificar la integridad de la bd, es decir, todo registro debe tener las asociaciones pertinentes, de lo contrario es información basura y debe eliminarse
+	
+DESDE EL PUNTO DE VISTA DEL CLIENTE
+	- administrar su tienda virtual
+		- cambiar url, nombre de la tienda o título de la tienda
+		- cambiar, personalizar (fondo, paleta de colores, solo cosas de css) y comprar plantillas web
+	- conocer estadísticas
+		- cuántas veces se han visto mis productos
+		- cuántas veces se han comprado o pedido
+		- cuántas veces se han promocionado
+		- cuántas veces se ha accedido a mi tienda
+		- quiénes han visto mis productos, han comprado o pedido, han promocionado, han entrado a mi tienda
+		- la opción de comprar un asistente que le sugiera:
+			- cuáles productos debe poner en oferta
+			- cuáles productos debe bajar de precios
+			- cuáles productos debe promocionar
+			- le envíe por email un informe diario de como están las ventas y las proyecciones o estimaciones
+			- 
+	- por cada producto poder:
+		- ver las estadísticas de visitas, comentarios, valoraciones, pedidos
+		- ver los comentarios o conversaciones y las valoraciones asociadas
+		- ver los pedidos o compras
+		- ver los históricos de activaciones y desactivaciones de la publicación, así como también los balances asociados con la publicación
+		- ver campañas de publicidad asociadas al producto
+	- mensajería
+		- medio de comunicación entre los usuarios
+		- conversaciones
+	- balances
+		- Débitos: pagos realizados a través de débitos, depósitos, transferencias, efectivo directo
+		- Créditos: pagos asociados a abonar al saldo
+		
+	
+	
+Integridad de los datos al eliminar
+	- al eliminar un objeto o registro, todos los registros asociados deben ser eliminados o colocados en null
+	
+Estados de los pedidos
+	- En Espera
+	- Pagado
+	- En Proceso
+	- Enviado
+	- Entregado
+	- Devuelto
+	- Anulado
+	- Olvidado
+	
+Grupos de Clientes
+	- Novato
+	- Vendedor Prospecto
+	- Vendedor Estrella
+	- Vendedor Experto
+	- Vendedor Supremo
+	- Comprador Prospecto
+	- Comprador Regular
+	- Comprador Responsable
+	- Comprador VIP
+
+- llamar a iguanahosting por el vps caído
+- cobrar a servitec, mest7zo, plantagro2012, 
+- contactar a rommel para los datos de las tarjetas de presentación
+- crear campaña de necoyoad ¿Aprende a cómo vender más en Venezuela?
+- estabilizar necoyoad.com y actualizar servidor online
+- crear app de cuenta de usuario independiente de la tienda
+
+
+
+CHANGELOG:
+- se corrigió el llamado a la función submit() en neco.form.js para aceptar funciones personalizadas
+-
+
+
+freddyamontiel@gmail.com
+karenguzin@hotmail.com - tienda virtual - marketing digital
+Eduardozapata2901@gmail.com - wordpress con plantilla web - tiendas virtuales - servicios de email marketing
+gregorychinea@hotmail.com - plantilla de mercado libre - tienda virtual
+ventas@todolaptop.com - UENOS DIAS, ESTOY INTERESADO UNA PAGINA WEB......DONDE PUEDA MOSTRAR MI CATALOGO DE PRODUCTOS, AREA DE CHAT Y CONSULTA EN VIVO, MONTAR ORDENES DE COMPRA ECT...Carritos de compra y a su ves colocarlo en un archivo plano para enlazar lo con mi sistema de facturación y a sus ves página de noticias en informativas mi correo es 
+chantillyfestejos@gmail.com - sergasbass.com - tienda virtual - 
+kurly82@hotmail.com - tienda virtual - marketing digital
+hlpm2009@gmail.com - tienda virtual - marketing digital
+aurybastidas@hotmail.com - tienda virtual - marketing digital
+tiendademoda2000@gmail.com - tienda virtual - marketing digital
+Oscarreyes456@gmail.com - tienda virtual - marketing digital
+jorgefranchi90@gmail.com
+
+
+- promotor de productos
+- visualizar perfil del cliente como vendedor, como comprador, como comentador
+	- muro 
+Perfil
+	Columna principal, muro donde se muestren las últimas actividades del cliente:
+		- publicaciones
+		- comentarios y réplicas
+		- valoraciones como vendedor, comprador y comentarista
+		- compras realizadas
+	- Columna derecha, mostrar widgets con diferentes informaciones
+		- resumen de la reputación como vendedor
+			- criterios de un buen vendedor
+				- Responsabilidad y Compromiso
+				- Atención Al Cliente
+				- Tiempo de Respuesta
+				- Productos de Calidad
+				- Precios Justos
+		- resumen de la reputación como comprador
+			- criterios de un buen vendedor
+				- Responsabilidad y Compromiso
+				- Amabilidad y Modales
+				- Tiempo de Respuesta
+				- Paciencia
+				- Buena Paga
+		- resumen de la reputación como comentarista
+		- útlimo artículo publicado
+		- 
+
+Changelog:
+- modificado /shop/checkout/cart/json
+- agregado de nuevas variables al módulo de admin/marketing/message [controller | view | language]
+- modificado /web/assets/theme/default/js/storeproduct.js
+- modificado /shop/controller/common/header.php
+- modificado /shop/view/theme/default/common/header.tpl
+- modificado /shop/controller/common/footer.php
+- modificado /shop/view/theme/default/common/footer.tpl
+- modificado /shop/view/theme/default/store/product.tpl
+- modificado /system/library/cart.php
+- modificado /shop/language/checkout/car.php
+- modificado /shop/language/account/login.php
+- modificado /shop/controller/account/login.php
+- modificado /web/assets/theme/default/js/accountlogin.css
+- modificado /shop/view/theme/default/account/login.tpl
+- modificado /shop/model/store/product.php
+- modificado /system/library/customer.php
+- modificado /shop/controller/common/seo_url.php
+- modificado /system/library/url.php
+- modificado /shop/model/account/customer.php
+- modificado /shop/model/checkout/order.php
+- modificado /shop/model/account/order.php
+- modificado /shop/view/theme/default/sale/create.tpl (se agregó var CKEDITOR_BASEPATH = '/assets/js/vendor/ckeditor/'; en la línea 198)
+
+
+- [sql] modificado la tabla customer 
+	ALTER TABLE `nt_customer` ADD `profile` VARCHAR(100) NOT NULL AFTER `lastname`;
+- [sql] creación de la tabla customer_setting
+	CREATE TABLE IF NOT EXISTS `nt_customer_setting` (
+	  `customer_setting_id` int(11) NOT NULL AUTO_INCREMENT,
+	  `customer_id` int(11) NOT NULL,
+	  `group` varchar(255) NOT NULL,
+	  `key` varchar(255) NOT NULL,
+	  `value` text NOT NULL,
+	  PRIMARY KEY (`customer_setting_id`),
+	  UNIQUE KEY `setting` (`customer_id`,`group`,`key`)
+	) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+- [sql] modificado la tabla review
+	ALTER TABLE `nt_review` ADD `review_type` VARCHAR(100) NOT NULL AFTER `object_type`;
+- [sql] Creado la tabla customer_activity
+	CREATE TABLE IF NOT EXISTS `nt_customer_activity` (
+	  `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT,
+	  `customer_id` int(11) NOT NULL,
+	  `object_id` int(11) NOT NULL,
+	  `object_type` varchar(100) NOT NULL,
+	  `action_type` varchar(100) NOT NULL,
+	  `overview` varchar(160) NOT NULL,
+	  `description` text NOT NULL,
+	  `icon` varchar(255) NOT NULL,
+	  `status` int(2) NOT NULL,
+	  `date_added` datetime NOT NULL,
+	  `date_modified` datetime NOT NULL,
+	  PRIMARY KEY (`customer_activity_id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+- [sql] creado la tabla 
+	CREATE TABLE IF NOT EXISTS `nt_customer_follow` (
+	  `customer_follow_id` int(11) NOT NULL AUTO_INCREMENT,
+	  `customer_id` int(11) NOT NULL,
+	  `object_id` int(11) NOT NULL,
+	  `object_type` varchar(100) NOT NULL,
+	  `params` text NOT NULL,
+	  `date_added` datetime NOT NULL,
+	  `date_modified` datetime NOT NULL,
+	  `status` int(1) NOT NULL,
+	  PRIMARY KEY (`customer_follow_id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+- [sql] Modificado tabal customer
+	ALTER TABLE `nt_customer` CHANGE `password` `password` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL; 
+
+- mostrar en el muro todas las actividades del cliente
+	- al agregar un comentario a un producto o publicación
+		- registrar en la tabla de actividades la acción
+			id del producto
+			id del anunciante
+			resumen del texto del comentario
+
+	- al mostrar los comentarios, agregarle un id a cada comentario para ubicarlos rápidamente por enlaces internos #id_del_comentario
+
+
+
+- mandar a imprimir las hojas membretadas en italven
+- enviar diseño de facturas a petnologica
+- llamar a juan arrazola para conocer su decisión
+- pagar 50% de las hojas membretadas
+- contactar a hanna para conocer su decisión sobre los logotipos
+- contactar al sr. victor martínez de plantagro2012 para conocer su opinión sobre el newsletter
+- enviar newsletter de servitec2000 y plantagro2012
+- 
+
+Gustavo Gomez
+0424 - 3201875
+gmga@hotmail.com
+
+1) La chica voluptuosa, yo se que eso llama la atencion, pero desde mi punto de vista eso le quita seriedad al volante, ademas de ser publicidad engañosa, porque ninguna de nosotras somos asi jejeje.  Podrias cambiarla por una mas seria? no necesariamente debe ser una persona, puede ser instrumentos u otra cosa o se deja en blanco, sino ps tu eres el diseñador jeje
+ 2) En vez de decir cursos de medicina que diga cursos practicos o algo asi en ese estilo porque de esa manera ampliariamos el campo de personas, porque si yo fuese estudiante de bioanalisis y veo el volante y dice curso de medicina inmediatamente dejaría de leer. 
+ 3) Donde dice formando profesionales, que diga formando profesionales en el ambito de la salud.
+ 4) En la parte de la rifa dice "rifa de sorporesa" y debe decir Rifa sorpresa
+ 5) Hay una imagen en la parte de abajo que pareciera que el doctar y la paciente estuvieran ligando, esa foto tambien podrias cambiarla?
+ 6) En la parte de las horas puedes colocar el am y el pm
+ 7) Por favor necesito un volante donde salga el costo y otro donde no, porque el que no es el que llevaremos a insajuv para que nos presten el salon cada 15 dias...
+
+
+ Plantillas WordPress para la revista de calidad y actualidad
+ http://demo.lioit.com/newszone/
+ http://theme-sphere.com/smart-mag/
+ http://yaaburnee.different-themes.com/
+
+ Niveles y Medallas Vendedores (6 Niveles)
+ 	Criterios:
+ 		- Nivel de satisfacción a los clientes en 30 días y desde el comienzo
+ 		- Nivel de ventas concretadas exitosas en 30 días y desde el comienzo
+ 		- Si alcanza N cantidad de ventas antes de las 10am en 30 días y desde el comienzo
+ 		- Si el tiempo de respuesta es menor a N en promedio en los últimos 7 días
+ 		- capacidad de producción contra volumen de ventas
+
+ Niveles y Medallas Compradores
+ 	Criterios:
+ 		- Nivel de buena paga a los clientes en 30 días y desde el comienzo
+ 		- Nivel de compras concretadas exitosas en 30 días y desde el comienzo
+ 		- Si alcanza N cantidad de compras antes de las 12pm en 30 días y desde el comienzo
+ 		- Si el tiempo de respuesta es menor a N en promedio en los últimos 7 días
+ 		- poder adquisitivo contra volumen de compras
+
+
+ Páginas y Contenidos:
+ ¿Cómo se calculan las puntuaciones de los vendedores y compradores?
+ ¿Cómo publicar o vender?
+ ¿Cómo comprar?
+ ¿Cómo pagar?
+ ¿Cómo hacer seguimiento de la compra y los pagos?
+
+
+llamar para pedir el email de los clientes
+enviar correo con la información

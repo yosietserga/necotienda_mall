@@ -8,6 +8,19 @@
     height:300px;
     float:left;
 }
+#categoriesContainer {
+     overflow-x: scroll;
+     overflow-y: hidden;
+     height:320px;
+     width:1180px;
+ }
+#categoriesWrapper {
+    height:320px;
+    min-width:400px;
+    width:auto;
+    max-width:3300px;
+    display:inline-block;
+}
 .ui-combobox-input {
     background:#fff !important;
     width:600px !important;

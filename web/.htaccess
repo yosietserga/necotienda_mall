@@ -425,7 +425,7 @@ FileETag None
 #<IfModule mod_rewrite.c>
 #  RewriteCond %{HTTPS} !=on
 #  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-#  RewriteRule (.*) http://necotienda.com/$1 [R=301,L]
+#  RewriteRule (.*) http://echapalante.com.ve/$1 [R=301,L]
 #</IfModule>
 
 # ----------------------------------------------------------------------

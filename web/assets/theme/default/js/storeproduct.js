@@ -282,17 +282,15 @@ function contactForm(data,httpHome,token) {
             $.post(httpHome + 'index.php?r=account/message/send',
             {
                 subject:inputSubject.val(),
-                message:encodeURIComponent(inputMsg.val()),
+                message:inputMsg.val(),
                 to:inputTo.val(),
                 token:token
-            },
-            function(response) {
+            }).then(function(response) {
                 var data = $.parseJSON(response);
-                if (data.error==1) {
-                    $(this).show();
-                } else {
-                    $(this).show();
+                if (data.error!=1) {
+                    $('#overlayTemp').remove();
                 }
+                $(this).show();
             });
         } else {
             $(document.createElement('div')).attr({
@@ -409,14 +407,13 @@ function buyForm(data,httpHome,token) {
                 quantity:inputQty.val(),
                 seller_id:inputSellerId.val(),
                 token:token
-            },
+            }).then(
             function(response) {
                 var data = $.parseJSON(response);
-                if (data.error==1) {
-                    $(this).show();
-                } else {
-                    $(this).show();
+                if (data.error!=1) {
+                    $('#overlayTemp').remove();
                 }
+                $(this).show();
             });
         } else {
             /* error debe ingresar la cantidad */
@@ -495,10 +492,12 @@ function productContact(isLogged,httpHome,token,data) {
     if (!isLogged) {
         loginForm(httpHome,token);
     } else {
-            // mostrar formulario de mensajería
+        /*
+            // mostrar formulario de mensajerï¿½a
             // enviarle al anunciante un email diciendo que el usuario lo ha contactado
             // registrar mensaje con sus asociaciones
             // mostrar mensaje de Mensaje Enviado
+        */
         contactForm(data,httpHome,token);
     }
 }
@@ -509,10 +508,12 @@ function productCart(isLogged,httpHome,token) {
         loginForm(httpHome,token);
     } else {
         buyForm(data,httpHome,token)
-            // mostrar formulario para indicar la cantidad a comprar, forma de pago y de envío
+        /*
+            // mostrar formulario para indicar la cantidad a comprar, forma de pago y de envï¿½o
             // mostrar en el formulario la cantidad disponible del anuncio
-            // al aceptar, crear pedido con la cantidad, forma de pago y forma de envío seleccionados
+            // al aceptar, crear pedido con la cantidad, forma de pago y forma de envï¿½o seleccionados
             // notificar al anunciante
-            // enviar al comprador la url con los pasos a seguir según el anunciante
+            // enviar al comprador la url con los pasos a seguir segï¿½n el anunciante
+        */
     }
 }

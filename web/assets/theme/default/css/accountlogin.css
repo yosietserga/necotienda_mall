@@ -1,0 +1,18 @@
+#create label {
+    width:40%;
+    height:auto;
+}
+#loginForm, #loginForm * {
+    float:none;
+}
+#loginForm, #loginForm .socialButton, #loginForm .property {
+    margin:0px auto;
+    text-align:center;
+}
+#loginForm input, #loginForm a, #loginForm a.button {
+    margin:5px auto;
+    clear:both;
+}
+#loginForm a.button {
+    padding:5px 10px;
+}

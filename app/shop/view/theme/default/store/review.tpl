@@ -2,12 +2,12 @@
 <?php if (!empty($reviews)) { ?>
     <?php foreach ($reviews as $review) { ?>
     <li id="review_<?php echo $review['review_id']; ?>" class="review_item">
-        <div class="grid_2">
+        <div class="grid_4">
             <b><?php echo $review['author']; ?></b><br />
             <img src="<?php echo HTTP_IMAGE; ?>stars_<?php echo $review['rating'] . '.png'; ?>" alt="<?php echo $review['stars']; ?>" /><br /><br />
             <small><?php echo $review['date_added']; ?></small><br /><br />
         </div>
-        <div class="grid_10">
+        <div class="grid_8">
             <?php echo $review['text']; ?>
         </div>
         <div class="clear"></div>
@@ -19,7 +19,7 @@
                     <b><?php echo $reply['author']; ?></b><br />
                     <small><?php echo date('d-m-Y h:i A',strtotime($reply['date_added'])); ?></small>
                 </div>
-                <div class="grid_8">
+                <div class="grid_9">
                     <?php echo $reply['text']; ?>
                 </div>
                 <div class="clear"></div>
